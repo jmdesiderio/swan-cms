@@ -2,7 +2,7 @@
   "name": "swan-cms",
   "version": "1.0.0",
   "description": "A CMS built with javascript",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,18 +20,64 @@
   },
   "homepage": "https://github.com/jmdesiderio/swan-cms#readme",
   "dependencies": {
+    "apollo-client": "^0.5.3",
     "babel-polyfill": "^6.16.0",
+    "express": "^4.14.0",
+    "graphql": "^0.7.2",
+    "graphql-server-express": "^0.4.3",
+    "immutable": "^3.8.1",
+    "moment": "^2.16.0",
+    "nunjucks": "^3.0.0",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-helmet": "^3.2.2",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "sequelize": "^3.25.0",
+    "sequelize-cli": "^2.4.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.5.3",
     "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "babel-plugin-transform-react-constant-elements": "^6.9.1",
+    "babel-plugin-transform-react-inline-elements": "^6.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.2.10",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.10.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-config-standard-react": "^4.2.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.1",
+    "eslint-plugin-promise": "^3.3.2",
+    "eslint-plugin-react": "^6.7.1",
+    "eslint-plugin-standard": "^2.0.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "flow-bin": "^0.35.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.13.0",
+    "postcss-loader": "^1.1.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "stylelint": "^7.5.0",
+    "stylelint-webpack-plugin": "^0.4.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
+  },
+  "babel": {
+    "presets": [
+      "latest",
+      "react"
+    ]
   }
 }
