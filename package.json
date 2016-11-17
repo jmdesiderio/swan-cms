@@ -4,6 +4,11 @@
   "description": "A CMS built with javascript",
   "main": "app/index.js",
   "scripts": {
+    "build:development": "NODE_ENV=development webpack --colors --config ./webpack/development.config.js",
+    "build:production": "NODE_ENV=production webpack --colors --config ./webpack/production.config.js",
+    "lint": "eslint app config plugins webpack",
+    "lint:fix": "eslint app config plugins webpack --fix",
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -44,6 +49,7 @@
     "autoprefixer": "^6.5.3",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
@@ -66,6 +72,7 @@
     "flow-bin": "^0.35.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.13.0",
+    "nodemon": "^1.11.0",
     "postcss-loader": "^1.1.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
@@ -73,11 +80,5 @@
     "stylelint-webpack-plugin": "^0.4.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
-  },
-  "babel": {
-    "presets": [
-      "latest",
-      "react"
-    ]
   }
 }

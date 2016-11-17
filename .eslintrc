@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "plugins": [
+    "babel",
+    "react",
+    "promise"
+  ],
+  "rules": {
+    "object-curly-spacing": ["error", "always"],
+    "max-len": [1, 120, 2, {
+      "ignoreUrls": true
+    }]
+  }
+}

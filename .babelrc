@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "latest",
+    "react"
+  ],
+  "env": {
+    "prod": {
+      "plugins": [
+        "transform-flow-strip-types",
+        "babel-plugin-transform-react-constant-elements",
+        "babel-plugin-transform-react-inline-elements",
+        "babel-plugin-transform-react-remove-prop-types"
+      ]
+    }
+  }
+}
