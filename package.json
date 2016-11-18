@@ -2,14 +2,17 @@
   "name": "swan-cms",
   "version": "1.0.0",
   "description": "A CMS built with javascript",
-  "main": "app/index.js",
+  "main": "app/server/index.js",
   "scripts": {
     "build:development": "NODE_ENV=development webpack --colors --config ./webpack/development.config.js",
     "build:production": "NODE_ENV=production webpack --colors --config ./webpack/production.config.js",
     "lint": "eslint app config plugins webpack",
     "lint:fix": "eslint app config plugins webpack --fix",
-    "start": "node app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app/server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:client": "NODE_ENV=development webpack --colors --config ./webpack/development.config.js --watch",
+    "watch:server": "nodemon app/server",
+    "watch": "npm-run-all -p watch:*"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,7 @@
   },
   "homepage": "https://github.com/jmdesiderio/swan-cms#readme",
   "dependencies": {
+    "@blueprintjs/core": "^1.0.1",
     "apollo-client": "^0.5.3",
     "babel-polyfill": "^6.16.0",
     "express": "^4.14.0",
@@ -35,11 +39,12 @@
     "nunjucks": "^3.0.0",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
     "react-helmet": "^3.2.2",
     "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.25.0",

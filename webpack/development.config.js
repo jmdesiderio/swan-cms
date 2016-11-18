@@ -1,8 +1,9 @@
-let ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
-  entry: './app/admin/index.js',
+  entry: './app/client/index.js',
   module: {
     loaders: [
       {
@@ -21,7 +22,7 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract([
-          'css?importLoaders=1',
+          'css?sourceMap&-minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
           'postcss',
           'sass'
         ])
@@ -31,5 +32,15 @@ module.exports = {
   output: {
     path: 'public',
     filename: 'app.min.js'
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      __DEV__: process.env.NODE_ENV === 'development',
+      __PROD__: process.env.NODE_ENV !== 'production'
+    }),
+    new ExtractTextPlugin('style.min.css')
+  ],
+  postcss: [
+    require('autoprefixer')({ browsers: ['last 2 versions'] })
+  ]
 }

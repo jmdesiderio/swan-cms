@@ -8,6 +8,15 @@
     "react",
     "promise"
   ],
+  "globals": {
+    "__DEV__": false,
+    "__PROD__": false,
+    "__DEBUG__": false
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "rules": {
     "object-curly-spacing": ["error", "always"],
     "max-len": [1, 120, 2, {

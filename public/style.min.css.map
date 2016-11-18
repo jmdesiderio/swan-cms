@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///webpack:///client/index.scss"],"names":[],"mappings":"AAAA;EACE,gBAAgB,EAAE","file":"style.min.css","sourcesContent":[".heading {\n  font-size: 5rem; }\n\n\n\n// WEBPACK FOOTER //\n// webpack:///client/index.scss"],"sourceRoot":""}
