@@ -1,10 +1,12 @@
 {
   "extends": [
     "standard",
-    "standard-react"
+    "standard-react",
+    "plugin:flowtype/recommended"
   ],
   "plugins": [
     "babel",
+    "flowtype",
     "react",
     "promise"
   ],

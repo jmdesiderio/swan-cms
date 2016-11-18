@@ -1,20 +1,22 @@
+// @flow
+
 import React, { PropTypes } from 'react'
 
 import Sidebar from '../../components/Sidebar/Sidebar'
 
-function CoreLayout ({ children }) {
+function MainLayout ({ children }) {
   return (
-    <div className='page-container'>
+    <div>
       <Sidebar />
-      <div className='view-container'>
+      <div>
         {children}
       </div>
     </div>
   )
 }
 
-CoreLayout.propTypes = {
+MainLayout.propTypes = {
   children: PropTypes.element
 }
 
-export default CoreLayout
+export default MainLayout

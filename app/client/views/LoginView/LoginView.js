@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react'
 
-export default class SettingsView extends Component {
+export default class LoginView extends Component {
   render () {
     return (
-      <h1>Settings View</h1>
+      <h1>Login View</h1>
     )
   }
 }

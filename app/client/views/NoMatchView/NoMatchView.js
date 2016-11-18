@@ -2,10 +2,10 @@
 
 import React, { Component } from 'react'
 
-export default class SettingsView extends Component {
+export default class NoMatchView extends Component {
   render () {
     return (
-      <h1>Settings View</h1>
+      <h1>No Match View</h1>
     )
   }
 }

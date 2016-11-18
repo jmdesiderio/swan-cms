@@ -1,10 +1,12 @@
+// @flow
+
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { Router, browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
 
 import routes from './routes'
@@ -19,9 +21,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      {routes}
-    </Router>
+    {routes(history)}
   </Provider>,
   document.getElementById('root')
 )

@@ -1,3 +1,5 @@
+// @flow
+
 const express = require('express')
 const nunjucks = require('nunjucks')
 const path = require('path')
@@ -18,16 +20,12 @@ admin.get('*', (req, res) => {
 app.use('/admin', admin)
 
 app.get('*', (req, res) => {
-  switch (req.path) {
-    case '/':
-      return res.render('index.html')
-    case '/about':
-      return res.render('about.html')
-    case '/blog/entry':
-      return res.render('blog/entry.html')
-    default:
-      return res.status(404).render('404.html')
-  }
+  const template = (req.path === '/') ? 'index' : req.path.slice(1)
+
+  res.render(template + '.html', (err, html) => {
+    if (err) res.status(404).render('404.html')
+    else res.send(html)
+  })
 })
 
 app.listen(3000, () => {
