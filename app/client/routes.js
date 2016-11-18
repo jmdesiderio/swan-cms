@@ -1,13 +1,14 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route, IndexRedirect } from 'react-router'
 
 import CoreLayout from './layouts/CoreLayout/CoreLayout'
-import HomeView from './views/HomeView/HomeView'
-import AdminView from './views/AdminView/AdminView'
+import DashboardView from './views/DashboardView/DashboardView'
+import SettingsView from './views/SettingsView/SettingsView'
 
 export default (
   <Route path='/admin' component={CoreLayout}>
-    <IndexRoute component={HomeView} />
-    <Route path='test' component={AdminView} />
+    <IndexRedirect to='dashboard' />
+    <Route path='dashboard' component={DashboardView} />
+    <Route path='settings' component={SettingsView} />
   </Route>
 )
