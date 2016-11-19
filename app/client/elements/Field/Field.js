@@ -16,7 +16,7 @@ export const FieldWrapper = ({ children, label, htmlFor }) => {
 }
 
 FieldWrapper.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   htmlFor: PropTypes.string,
   label: PropTypes.string
 }
@@ -36,9 +36,9 @@ Button.defaultProps = {
   text: 'Submit'
 }
 
-export const Input = props => (
-  <FieldWrapper label={props.label} htmlFor={props.id}>
-    <input {...props} />
+export const Input = ({ input = {}, meta = {}, ...custom }) => (
+  <FieldWrapper label={custom.label} htmlFor={custom.id}>
+    <input {...input} {...custom} />
   </FieldWrapper>
 )
 
@@ -47,12 +47,11 @@ Input.propTypes = {
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string,
+  input: PropTypes.object,
   label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  meta: PropTypes.object,
   placeholder: PropTypes.string,
-  type: PropTypes.string,
-  value: PropTypes.string
+  type: PropTypes.string
 }
 Input.defaultProps = {
   className: s.input,
@@ -68,11 +67,11 @@ export const Select = () => (
   </select>
 )
 
-export const Checkbox = props => (
-  <FieldWrapper htmlFor={props.id}>
+export const Checkbox = ({ input = {}, meta = {}, ...custom }) => (
+  <FieldWrapper>
     <label className={s.label}>
-      <input {...props} />
-      {props.label}
+      <input {...input} {...custom} />
+      {custom.label}
     </label>
   </FieldWrapper>
 )
@@ -82,9 +81,10 @@ Checkbox.propTypes = {
   className: PropTypes.string,
   defaultChecked: PropTypes.bool,
   id: PropTypes.string,
+  input: PropTypes.object,
   label: PropTypes.string,
-  onChange: PropTypes.func,
-  value: PropTypes.string
+  meta: PropTypes.object,
+  type: PropTypes.string
 }
 Checkbox.defaultProps = {
   className: s.checkbox,
