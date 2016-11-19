@@ -1,8 +1,8 @@
 const Auth = {
   isLoggedIn: () => {
-    return true
+    return false
   },
-  isAccessable: () => {
+  isAccessible: () => {
     return true
   }
 }
@@ -13,7 +13,8 @@ export function requireNoAuth (nextState, replace, callback) {
 }
 
 export function requireAuth (nextState, replace, callback) {
-  if (!Auth.isLoggedIn() && !Auth.isAccessable()) replace('/admin/login')
+  if (!Auth.isLoggedIn()) replace('/admin/login')
+  if (!Auth.isAccessible()) replace('/admin/dashboard')
   callback()
 }
 

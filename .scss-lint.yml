@@ -1,0 +1,3 @@
+linters:
+  SelectorFormat:
+    convention: 'camel_case'

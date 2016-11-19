@@ -1,11 +1,12 @@
 // @flow
 
 import React, { PropTypes } from 'react'
-import Helmet from 'react-helmet'
+
+import s from './LoginLayout.scss'
 
 function LoginLayout ({ children }) {
   return (
-    <div>
+    <div className={s.root}>
       {children}
     </div>
   )

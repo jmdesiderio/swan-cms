@@ -3,8 +3,8 @@
 import React from 'react'
 import { Router, Route, IndexRedirect } from 'react-router'
 
-import App from './containers/App'
-import { requireAuth, requireNoAuth } from './containers/Auth'
+import App from './containers/App/App'
+import { requireAuth, requireNoAuth } from './containers/Auth/Auth'
 
 import MainLayout from './layouts/MainLayout/MainLayout'
 import LoginLayout from './layouts/LoginLayout/LoginLayout'
