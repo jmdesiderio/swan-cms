@@ -1,9 +1,11 @@
 // @flow
 
 const express = require('express')
+const graphqlHTTP = require('express-graphql')
 const nunjucks = require('nunjucks')
 const path = require('path')
 const app = express()
+const { schema, root } = require('./graphql')
 
 nunjucks.configure('templates', {
   autoescape: true,
@@ -18,6 +20,12 @@ admin.get('*', (req, res) => {
 })
 
 app.use('/admin', admin)
+
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true
+}))
 
 app.get('*', (req, res) => {
   const template = (req.path === '/') ? 'index' : req.path.slice(1)

@@ -414,9 +414,9 @@
       align-items: center;
   display: -ms-flexbox;
   display: flex;
-  height: 100%;
   -ms-flex-pack: center;
-      justify-content: center; }
+      justify-content: center;
+  min-height: 100%; }
 .Field__fieldWrapper___2CFPd {
   margin: 1rem 0;
   position: relative; }

@@ -8,7 +8,8 @@
     "babel",
     "flowtype",
     "react",
-    "promise"
+    "promise",
+    "graphql"
   ],
   "globals": {
     "__DEV__": false,
