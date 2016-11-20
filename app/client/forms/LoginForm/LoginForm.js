@@ -37,6 +37,10 @@ class LoginForm extends Component {
     })
   }
 
+  submitHandler (data) {
+    console.log(data)
+  }
+
   renderLoginFormBottom () {
     return (
       <div>
@@ -51,7 +55,7 @@ class LoginForm extends Component {
             name='keepLoggedIn' />
           <a className={s.link}
             onClick={this.resetPasswordLinkHandler}>
-            Forget your password
+            {'Forget your password?'}
           </a>
         </div>
       </div>
@@ -64,7 +68,7 @@ class LoginForm extends Component {
     const label = (isResetPasswordForm) ? 'Reset Password' : 'Login'
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(this.submitHandler)}>
         <Field component={Input}
           label='Username or Email'
           id='username'

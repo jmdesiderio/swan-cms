@@ -13,7 +13,9 @@ import routes from './routes'
 import rootReducer from './reducers'
 
 let middleware = applyMiddleware(thunk, routerMiddleware(browserHistory))
-if (__DEV__) middleware = compose(middleware, window.devToolsExtension())
+if (__DEV__ && window.devToolsExtension) {
+  middleware = compose(middleware, window.devToolsExtension())
+}
 
 const initialState = window.__INITIAL_STATE__ || {}
 const store = createStore(rootReducer, initialState, middleware)

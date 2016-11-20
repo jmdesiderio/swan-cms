@@ -20,7 +20,6 @@ export const FieldWrapper = ({ children, error, label, htmlFor }) => {
     </div>
   )
 }
-
 FieldWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -34,7 +33,6 @@ export const Button = ({ disabled, text }) => (
     {text}
   </button>
 )
-
 Button.propTypes = {
   disabled: PropTypes.bool,
   text: PropTypes.string
@@ -59,7 +57,6 @@ export const Input = ({ input, meta: { touched, error }, ...custom }) => {
     </FieldWrapper>
   )
 }
-
 Input.propTypes = {
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
@@ -83,15 +80,22 @@ export const Select = () => (
   </select>
 )
 
-export const Checkbox = ({ input, meta, ...custom }) => (
-  <FieldWrapper>
-    <label className={s.label}>
-      <input {...input} {...custom} />
-      {custom.label}
-    </label>
-  </FieldWrapper>
-)
+export const Checkbox = ({ input, meta, ...custom }) => {
+  let className = cx({
+    checkbox: true
+  })
 
+  return (
+    <FieldWrapper>
+      <label className={s.label}>
+        <input className={className}
+          {...input}
+          {...custom} />
+        {custom.label}
+      </label>
+    </FieldWrapper>
+  )
+}
 Checkbox.propTypes = {
   checked: PropTypes.bool,
   className: PropTypes.string,
@@ -103,7 +107,6 @@ Checkbox.propTypes = {
   type: PropTypes.string
 }
 Checkbox.defaultProps = {
-  className: s.checkbox,
   type: 'checkbox'
 }
 

@@ -435,6 +435,10 @@
   margin: .25rem 0;
   padding: .75rem .875rem;
   width: 100%; }
+  .Field__input___DVOyO:focus {
+    border-color: #0d78f2;
+    box-shadow: 0 0 5px #348ef4;
+    outline: 0; }
 
 .Field__inputError___243-a {
   border: 1px solid #da5a47; }
@@ -448,6 +452,11 @@
   padding: .75rem .875rem;
   white-space: nowrap;
   width: 100%; }
+  .Field__button___31k4n:hover {
+    background-image: linear-gradient(#cf3f2a, #ad3523); }
+  .Field__button___31k4n:active {
+    background-image: linear-gradient(#8b2a1c, #ad3523);
+    outline: 0; }
   .Field__button___31k4n[disabled] {
     cursor: default;
     opacity: .25; }
