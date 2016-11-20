@@ -1,22 +1,29 @@
 import React, { PropTypes } from 'react'
+import classNames from 'classnames/bind'
 
 import s from './Field.scss'
+const cx = classNames.bind(s)
 
-export const FieldWrapper = ({ children, label, htmlFor }) => {
+export const FieldWrapper = ({ children, error, label, htmlFor }) => {
   const labelElement = (label)
     ? <label className={s.label} htmlFor={htmlFor}>{label}:</label>
+    : null
+  const errorElement = (error)
+    ? <div className={s.error}>{error}</div>
     : null
 
   return (
     <div className={s.fieldWrapper}>
       {labelElement}
       {children}
+      {errorElement}
     </div>
   )
 }
 
 FieldWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   htmlFor: PropTypes.string,
   label: PropTypes.string
 }
@@ -36,14 +43,24 @@ Button.defaultProps = {
   text: 'Submit'
 }
 
-export const Input = ({ input = {}, meta = {}, ...custom }) => (
-  <FieldWrapper label={custom.label} htmlFor={custom.id}>
-    <input {...input} {...custom} />
-  </FieldWrapper>
-)
+export const Input = ({ input, meta: { touched, error }, ...custom }) => {
+  let className = cx({
+    input: true,
+    inputError: touched && error
+  })
+
+  return (
+    <FieldWrapper error={touched && error}
+      label={custom.label}
+      htmlFor={custom.id}>
+      <input className={className}
+        {...input}
+        {...custom} />
+    </FieldWrapper>
+  )
+}
 
 Input.propTypes = {
-  className: PropTypes.string,
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string,
@@ -54,7 +71,6 @@ Input.propTypes = {
   type: PropTypes.string
 }
 Input.defaultProps = {
-  className: s.input,
   type: 'text'
 }
 
@@ -67,7 +83,7 @@ export const Select = () => (
   </select>
 )
 
-export const Checkbox = ({ input = {}, meta = {}, ...custom }) => (
+export const Checkbox = ({ input, meta, ...custom }) => (
   <FieldWrapper>
     <label className={s.label}>
       <input {...input} {...custom} />

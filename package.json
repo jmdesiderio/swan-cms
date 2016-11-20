@@ -31,6 +31,7 @@
     "@blueprintjs/core": "^1.0.1",
     "apollo-client": "^0.5.3",
     "babel-polyfill": "^6.16.0",
+    "classnames": "^2.2.5",
     "express": "^4.14.0",
     "graphql": "^0.7.2",
     "graphql-server-express": "^0.4.3",
@@ -47,7 +48,7 @@
     "react-router": "^3.0.0",
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
-    "redux-form": "^6.2.0",
+    "redux-form": "6.2.0",
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.25.0",
     "sequelize-cli": "^2.4.0"
