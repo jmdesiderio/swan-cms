@@ -1,14 +1,3 @@
-const knex = require('knex')({
-  client: 'pg',
-  connection: {
-    host: 'localhost',
-    user: 'jasondesiderio',
-    password: '',
-    database: 'jasondesiderio'
-  },
-  migrations: {
-    tableName: 'migrations'
-  }
-})
+const knex = require('knex')(require('../../../knexfile'))
 
 console.log(knex)
