@@ -1,8 +1,8 @@
 {
   "presets": [
     "latest",
-    "stage-3",
-    "react"
+    "react",
+    "stage-0"
   ],
   "plugins": [
     "transform-flow-strip-types",
