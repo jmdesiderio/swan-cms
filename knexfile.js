@@ -1,14 +1,34 @@
-// Update with your config settings.
+const path = require('path')
 
 module.exports = {
-  client: 'pg',
-  connection: {
-    host: 'localhost',
-    database: 'jasondesiderio',
-    user: 'jasondesiderio',
-    password: ''
+  development: {
+    client: 'pg',
+    connection: {
+      host: 'localhost',
+      database: 'jasondesiderio',
+      user: 'jasondesiderio',
+      password: ''
+    },
+    migrations: {
+      directory: path.join(__dirname, '/app/server/db/migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, '/app/server/db/seeds')
+    }
   },
-  migrations: {
-    tableName: 'migrations'
+  production: {
+    client: 'pg',
+    connection: {
+      host: 'localhost',
+      database: 'jasondesiderio',
+      user: 'jasondesiderio',
+      password: ''
+    },
+    migrations: {
+      directory: path.join(__dirname, '/app/server/db/migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, '/app/server/db/seeds')
+    }
   }
 }

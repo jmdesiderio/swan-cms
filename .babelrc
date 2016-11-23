@@ -8,7 +8,7 @@
     "transform-flow-strip-types",
   ],
   "env": {
-    "prod": {
+    "production": {
       "plugins": [
         "babel-plugin-transform-react-constant-elements",
         "babel-plugin-transform-react-inline-elements",
