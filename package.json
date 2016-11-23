@@ -4,14 +4,15 @@
   "description": "A CMS built with javascript",
   "main": "app/server/index.js",
   "scripts": {
-    "build:development": "NODE_ENV=development webpack --colors --config ./_build/webpack/development.config.js",
+    "build:development": "nf run -- webpack --colors --config ./_build/webpack/development.config.js",
     "build:production": "NODE_ENV=production webpack --colors --config ./_build/webpack/production.config.js",
     "lint": "eslint app config plugins webpack",
     "lint:fix": "eslint app config plugins webpack --fix",
+    "knex": "nf run -- knex --knexfile _build/knexfile.js",
     "start": "node app/server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:client": "NODE_ENV=development webpack --colors --config ./_build/webpack/development.config.js --watch",
-    "watch:server": "nodemon --watch app --watch public --watch templates app/server",
+    "watch:client": "nf run -- webpack --colors --config ./_build/webpack/development.config.js --watch",
+    "watch:server": "nf run -- nodemon --watch app --watch public --watch templates app/server",
     "watch": "npm-run-all -p watch:*"
   },
   "repository": {
@@ -83,6 +84,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "flow-bin": "^0.35.0",
+    "foreman": "^2.0.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.13.0",
     "nodemon": "^1.11.0",

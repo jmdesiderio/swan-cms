@@ -1,7 +1,8 @@
 // @flow
-
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+console.log('webpack nodeenv', process.env.NODE_ENV)
 
 module.exports = {
   devtool: 'source-map',
@@ -38,7 +39,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __DEV__: process.env.NODE_ENV === 'development',
-      __PROD__: process.env.NODE_ENV !== 'production'
+      __PROD__: process.env.NODE_ENV === 'production'
     }),
     new ExtractTextPlugin('style.min.css')
   ],
