@@ -1,17 +1,14 @@
 // @flow
 
-const express = require('express')
-const graphqlHTTP = require('express-graphql')
-const nunjucks = require('nunjucks')
-const path = require('path')
-const app = express()
-const { schema, root } = require('./graphql')
-import Knex from 'knex'
-import { Model } from 'objection'
-import knexConfig from '../../_build/knexfile'
+import path from 'path'
+import express from 'express'
+import bodyParser from 'body-parser'
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
+import { schema, root } from './graphql'
+import nunjucks from 'nunjucks'
+import './db'
 
-const knex = Knex(knexConfig)
-Model.knex(knex)
+const app = express()
 
 nunjucks.configure('templates', {
   autoescape: true,
@@ -20,19 +17,20 @@ nunjucks.configure('templates', {
 
 app.use(express.static('public'))
 
-const admin = express.Router()
-admin.get('*', (req, res) => {
+// ADMIN
+app.use('/admin', express.Router().get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'))
-})
-
-app.use('/admin', admin)
-
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true
 }))
 
+// GRAPHQL
+app.use('/graphql', bodyParser.json(), graphqlExpress({
+  schema: schema,
+  rootValue: root
+})).use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql'
+}))
+
+// TEMPLATES
 app.get('*', (req, res) => {
   const template = (req.path === '/') ? 'index' : req.path.slice(1)
 
