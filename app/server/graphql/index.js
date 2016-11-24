@@ -1,84 +1,43 @@
 const { buildSchema } = require('graphql')
-let fakeDatabase = {}
+import User from '../models/User'
 
 const schema = buildSchema(`
-  input MessageInput {
-    content: String
-    author: String
+  input UserInput {
+    username: String
+    email: String
+    password: String
   }
 
-  type Message {
+  type User {
     id: ID!
-    content: String
-    author: String
-  }
-
-  type RandomDie {
-    numSides: Int!,
-    rollOnce: Int!,
-    roll(numRolls: Int!): [Int]
+    username: String
+    email: String
+    password: String
   }
 
   type Query {
-    getDie(numSides: Int): RandomDie
-    getMessage(id: ID!): Message
-    getAllMessages: [Message]
+    getUser(id: Int): User
   }
 
   type Mutation {
-    createMessage(input: MessageInput): Message
-    updateMessage(id: ID!, input: MessageInput): Message
+    createUser(input: UserInput): User
   }
 `)
 
-class RandomDie {
-  constructor (numSides) {
-    this.numSides = numSides
-  }
-
-  rollOnce () {
-    return 1 + Math.floor(Math.random() * this.numSides)
-  }
-
-  roll ({ numRolls }) {
-    let output = []
-    for (let i = 0; i < numRolls; i++) {
-      output.push(this.rollOnce())
-    }
-    return output
-  }
-}
-
-class Message {
-  constructor (id, { content, author }) {
-    this.id = id
-    this.content = content
-    this.author = author
-  }
-}
-
 const root = {
-  getDie: ({ numSides }) => {
-    return new RandomDie(numSides || 6)
+  getUser: ({ id }) => {
+    return User
+      .query()
+      .findById(id)
   },
-  getMessage: ({ id }) => {
-    if (!fakeDatabase[id]) throw new Error('no message exists with id ' + id)
-    return new Message(id, fakeDatabase[id])
-  },
-  getAllMessages: () => {
-    return Object.keys(fakeDatabase).map((messageID) => {
-      return new Message(messageID, fakeDatabase[messageID])
-    })
-  },
-  createMessage: ({ input }) => {
-    let id = require('crypto').randomBytes(10).toString('hex')
-    fakeDatabase[id] = input
-    return new Message(id, input)
-  },
-  updateMessage: ({ id, input }) => {
-    if (!fakeDatabase[id]) throw new Error('no message exists with id ' + id)
-    fakeDatabase[id] = input
-    return new Message(id, input)
+  createUser: ({ input }) => {
+    return User
+      .query()
+      .insertAndFetch({
+        username: input.username,
+        email: input.email,
+        password: input.password
+      })
   }
 }
 

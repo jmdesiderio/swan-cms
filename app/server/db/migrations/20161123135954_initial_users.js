@@ -25,7 +25,7 @@ exports.up = (knex, Promise) => {
     table.timestamp('lastPasswordChangeDate')
     table.timestamp('createdAt').notNullable().defaultTo(knex.raw('now()'))
     table.timestamp('updatedAt').notNullable().defaultTo(knex.raw('now()'))
-    table.uuid('uid').index().notNullable()
+    table.uuid('uuid').index().notNullable().defaultTo(knex.raw('gen_random_uuid()'))
   })
 }
 

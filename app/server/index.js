@@ -6,6 +6,12 @@ const nunjucks = require('nunjucks')
 const path = require('path')
 const app = express()
 const { schema, root } = require('./graphql')
+import Knex from 'knex'
+import { Model } from 'objection'
+import knexConfig from '../../_build/knexfile'
+
+const knex = Knex(knexConfig)
+Model.knex(knex)
 
 nunjucks.configure('templates', {
   autoescape: true,

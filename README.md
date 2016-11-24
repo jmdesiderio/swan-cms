@@ -8,3 +8,6 @@
 - static
 - storage
 - templates
+
+## Database set up
+- `CREATE EXTENSION IF NOT EXISTS "pgcrypto";`

@@ -12,7 +12,7 @@
     "start": "node app/server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:client": "nf run -- webpack --colors --config ./_build/webpack/development.config.js --watch",
-    "watch:server": "nf run -- nodemon --watch app --watch public --watch templates app/server",
+    "watch:server": "nf run -- nodemon --watch app --watch public --watch templates --exec \"babel-node\" app/server",
     "watch": "npm-run-all -p watch:*"
   },
   "repository": {
@@ -32,12 +32,14 @@
     "apollo-client": "^0.5.3",
     "babel-polyfill": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "graphql": "^0.7.2",
     "immutable": "^3.8.1",
+    "jsonwebtoken": "^7.1.9",
     "knex": "^0.12.6",
     "moment": "^2.16.0",
     "normalize.css": "^5.0.0",
