@@ -1,18 +1,20 @@
 // @flow
 import path from 'path'
 import express from 'express'
-import jwt from 'jsonwebtoken'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
 import schema from './graphql'
 import nunjucks from 'nunjucks'
+
+import { authMiddleware } from './auth'
 import './db'
 
 const app = express()
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(express.static('public'))
+app.use(authMiddleware())
 
 nunjucks.configure('templates', {
   autoescape: true,
@@ -26,13 +28,12 @@ app.use('/admin', express.Router().get('*', (req, res) => {
 
 // GRAPHQL
 app.use('/graphql', graphqlExpress((req, res) => {
-  let user
-  if (req.cookies.token) {
-    user = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET)
-  }
-
   return {
-    context: { req, res, user },
+    context: {
+      req,
+      res,
+      user: req.user
+    },
     schema: schema,
     debug: true
   }
