@@ -4,7 +4,7 @@ import path from 'path'
 import express from 'express'
 import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
-import { schema, root } from './graphql'
+import schema from './graphql'
 import nunjucks from 'nunjucks'
 import './db'
 
@@ -23,10 +23,10 @@ app.use('/admin', express.Router().get('*', (req, res) => {
 }))
 
 // GRAPHQL
-app.use('/graphql', bodyParser.json(), graphqlExpress({
+app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
   schema: schema,
-  rootValue: root
-})).use('/graphiql', graphiqlExpress({
+  debug: true
+}))).use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql'
 }))
 
