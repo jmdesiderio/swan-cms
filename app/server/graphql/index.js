@@ -1,47 +1,30 @@
-const { buildSchema } = require('graphql')
-import User from '../models/User'
+import merge from 'lodash/merge'
+import { makeExecutableSchema } from 'graphql-tools'
 
-const schema = buildSchema(`
-  input UserInput {
-    username: String
-    email: String
-    password: String
+import { schema as QuerySchema, resolvers as QueryResolvers } from './queries'
+import { schema as MutationSchema, resolvers as MutationResolvers } from './mutations'
+import { schema as ObjectSchema, resolvers as ObjectResolvers } from './objects'
+import { schema as InputSchema, resolvers as InputResolvers } from './inputs'
+
+const schema = `
+  schema {
+    query: Query
+    mutation: Mutation
   }
+`
 
-  type User {
-    id: ID!
-    username: String
-    email: String
-    password: String
-  }
-
-  type Query {
-    getUser(id: Int): User
-  }
-
-  type Mutation {
-    createUser(input: UserInput): User
-  }
-`)
-
-const root = {
-  getUser: ({ id }) => {
-    return User
-      .query()
-      .findById(id)
-  },
-  createUser: ({ input }) => {
-    return User
-      .query()
-      .insertAndFetch({
-        username: input.username,
-        email: input.email,
-        password: input.password
-      })
-  }
-}
-
-module.exports = {
-  schema,
-  root
-}
+export default makeExecutableSchema({
+  typeDefs: [
+    schema,
+    QuerySchema,
+    MutationSchema,
+    ...ObjectSchema,
+    ...InputSchema
+  ],
+  resolvers: merge(
+    QueryResolvers,
+    MutationResolvers,
+    ObjectResolvers,
+    InputResolvers
+  )
+})
