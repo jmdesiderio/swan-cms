@@ -6,18 +6,18 @@ import { schema as MutationSchema, resolvers as MutationResolvers } from './muta
 import { schema as ObjectSchema, resolvers as ObjectResolvers } from './objects'
 import { schema as InputSchema, resolvers as InputResolvers } from './inputs'
 
-const schema = `
+const schema = [`
   schema {
     query: Query
     mutation: Mutation
   }
-`
+`]
 
 export default makeExecutableSchema({
   typeDefs: [
-    schema,
-    QuerySchema,
-    MutationSchema,
+    ...schema,
+    ...QuerySchema,
+    ...MutationSchema,
     ...ObjectSchema,
     ...InputSchema
   ],

@@ -1,21 +1,23 @@
 // @flow
-
 import path from 'path'
 import express from 'express'
+import jwt from 'jsonwebtoken'
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
 import schema from './graphql'
 import nunjucks from 'nunjucks'
 import './db'
 
 const app = express()
+app.use(cookieParser())
+app.use(bodyParser.json())
+app.use(express.static('public'))
 
 nunjucks.configure('templates', {
   autoescape: true,
   express: app
 })
-
-app.use(express.static('public'))
 
 // ADMIN
 app.use('/admin', express.Router().get('*', (req, res) => {
@@ -23,10 +25,18 @@ app.use('/admin', express.Router().get('*', (req, res) => {
 }))
 
 // GRAPHQL
-app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
-  schema: schema,
-  debug: true
-}))).use('/graphiql', graphiqlExpress({
+app.use('/graphql', graphqlExpress((req, res) => {
+  let user
+  if (req.cookies.token) {
+    user = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET)
+  }
+
+  return {
+    context: { req, res, user },
+    schema: schema,
+    debug: true
+  }
+})).use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql'
 }))
 
@@ -40,6 +50,7 @@ app.get('*', (req, res) => {
   })
 })
 
+// START
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!')
 })
