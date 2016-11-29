@@ -5,7 +5,6 @@ export function authMiddleware () {
     if (req.cookies.token) {
       try {
         req.user = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET)
-        setTokenCookie(res, req.user)
       } catch (err) {
         console.error(err.name, '-', err.message)
         res.clearCookie('token')

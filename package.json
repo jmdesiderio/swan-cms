@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/jmdesiderio/swan-cms#readme",
   "dependencies": {
-    "apollo-client": "^0.5.3",
+    "apollo-client": "^0.5.7",
     "babel-polyfill": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "bcryptjs": "^2.3.0",
@@ -54,6 +54,7 @@
     "passport-local": "^1.0.0",
     "pg": "^6.1.0",
     "react": "^15.4.0",
+    "react-apollo": "^0.6.0",
     "react-dom": "^15.4.0",
     "react-helmet": "^3.2.2",
     "react-redux": "^4.4.6",

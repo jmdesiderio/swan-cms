@@ -1,5 +1,4 @@
 // @flow
-
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -8,6 +7,8 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
+import ApolloClient from 'apollo-client'
+import { ApolloProvider } from 'react-apollo'
 
 import routes from './routes'
 import rootReducer from './reducers'
@@ -20,10 +21,13 @@ if (__DEV__ && window.devToolsExtension) {
 const initialState = window.__INITIAL_STATE__ || {}
 const store = createStore(rootReducer, initialState, middleware)
 const history = syncHistoryWithStore(browserHistory, store)
+const client = new ApolloClient()
 
 ReactDOM.render(
-  <Provider store={store}>
-    {routes(history)}
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      {routes(history)}
+    </Provider>
+  </ApolloProvider>,
   document.getElementById('root')
 )

@@ -2,6 +2,8 @@
 
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { graphql, compose } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import { Checkbox, Button, Input } from '../../elements/Field/Field'
 
@@ -29,6 +31,7 @@ class LoginForm extends Component {
     }
 
     this.resetPasswordLinkHandler = this.resetPasswordLinkHandler.bind(this)
+    this.submitHandler = this.submitHandler.bind(this)
   }
 
   resetPasswordLinkHandler () {
@@ -37,26 +40,14 @@ class LoginForm extends Component {
     })
   }
 
-  submitHandler (data) {
-    var dice = 3
-    var sides = 6
-    var xhr = new XMLHttpRequest()
-    xhr.responseType = 'json'
-    xhr.open('POST', '/graphql')
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.setRequestHeader('Accept', 'application/json')
-    xhr.onload = function () {
-      console.log('data returned:', xhr.response)
-    }
-    var query = `query RollDice($dice: Int!, $sides: Int) {
-      rollDice(numDice: $dice, numSides: $sides)
-    }`
-    xhr.send(JSON.stringify({
-      query: query,
-      variables: { dice: dice, sides: sides }
-    }))
-
-    console.log(data)
+  submitHandler (input) {
+    return this.props.mutate({
+      variables: input
+    }).then(({ data }) => {
+      console.log('got data', data)
+    }).catch(err => {
+      console.error(err)
+    })
   }
 
   renderLoginFormBottom () {
@@ -102,11 +93,24 @@ class LoginForm extends Component {
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func,
   invalid: PropTypes.bool,
+  mutate: PropTypes.func,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool
 }
 
-export default reduxForm({
-  form: 'LoginForm',
-  validate
-})(LoginForm)
+const mutation = gql`
+  mutation loginAuth($username: String!, $password: String!) {
+    loginAuth(
+      username: $username
+      password: $password
+    ) {
+      id
+      admin
+    }
+  }
+`
+
+export default compose(
+  graphql(mutation),
+  reduxForm({ form: 'LoginForm', validate })
+)(LoginForm)
