@@ -21,7 +21,5 @@ export function createToken ({ id, admin }) {
 export function setTokenCookie (res, user) {
   const token = createToken(user)
 
-  res.cookie('token', token, {
-    httpOnly: true
-  })
+  res.cookie('token', token)
 }
