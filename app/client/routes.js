@@ -1,10 +1,9 @@
 // @flow
-
 import React from 'react'
 import { Router, Route, IndexRedirect } from 'react-router'
 
 import App from './containers/App/App'
-import { requireAuth, requireNoAuth } from './containers/Auth/Auth'
+import RequireAuth from './containers/RequireAuth/RequireAuth'
 
 import MainLayout from './layouts/MainLayout/MainLayout'
 import LoginLayout from './layouts/LoginLayout/LoginLayout'
@@ -19,12 +18,14 @@ const onUpdate = () => window.scroll(0, 0)
 export default (history) => (
   <Router history={history} onUpdate={onUpdate}>
     <Route path='/admin' component={App}>
-      <Route component={MainLayout} onEnter={requireAuth}>
-        <IndexRedirect to='dashboard' />
-        <Route path='dashboard' component={DashboardView} />
-        <Route path='settings' component={SettingsView} />
+      <Route component={RequireAuth}>
+        <Route component={MainLayout}>
+          <IndexRedirect to='dashboard' />
+          <Route path='dashboard' component={DashboardView} />
+          <Route path='settings' component={SettingsView} />
+        </Route>
       </Route>
-      <Route component={LoginLayout} onEnter={requireNoAuth}>
+      <Route component={LoginLayout}>
         <Route path='login' component={LoginView} />
       </Route>
       <Route path='*' component={NoMatchView} />

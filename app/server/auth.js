@@ -1,31 +1,8 @@
-import jwt from 'jsonwebtoken'
+import { verifyToken } from './actions/TokenActions'
 
 export function authMiddleware () {
   return (req, res, next) => {
-    if (req.cookies.token) {
-      try {
-        req.user = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET)
-      } catch (err) {
-        console.error(err.name, '-', err.message)
-        res.clearCookie('token')
-      }
-    }
-
+    verifyToken(req, res)
     next()
   }
-}
-
-export function createToken ({ id, admin }) {
-  return jwt.sign({
-    id,
-    admin
-  }, process.env.TOKEN_SECRET, { expiresIn: '30m' })
-}
-
-export function setTokenCookie (res, user) {
-  const token = createToken(user)
-
-  res.cookie('token', token, {
-    httpOnly: true
-  })
 }

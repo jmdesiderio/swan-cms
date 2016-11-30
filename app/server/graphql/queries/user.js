@@ -1,11 +1,22 @@
 import { getUser } from '../../actions/UserActions'
+import { verifyToken } from '../../actions/TokenActions'
 
 export const schema = `
-  user(id: Int): User
+  user: User
+  getUser(id: Int): User
+  verifyUser: Boolean
 `
 
 export const resolvers = {
-  user: (root, { id }, context) => {
+  user: (root, input, context) => {
+    return getUser(context.req.user.id)
+  },
+  getUser: (root, { id }, context) => {
     return getUser(id)
+  },
+  verifyUser: (root, input, context) => {
+    const { req, res } = context
+    verifyToken(req, res)
+    return Boolean(req.user)
   }
 }

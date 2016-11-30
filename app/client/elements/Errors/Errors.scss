@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.root {
+  background-color: $pink-light;
+  border: 1px solid transparent;
+  border-color: $pink;
+  border-radius: 4px;
+  color: $red;
+  font-size: .875rem;
+  margin-bottom: 1.75rem;
+  padding: .75rem;
+  text-align: center;
+}

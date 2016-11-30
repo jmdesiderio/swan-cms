@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 
-import { setTokenCookie } from '../auth'
+import { setTokenCookie } from './TokenActions'
 import User from '../models/UserModel'
 
 export function loginAuth (username, password, res) {

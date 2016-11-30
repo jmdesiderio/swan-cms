@@ -1,11 +1,12 @@
 // @flow
-
 import React, { Component, PropTypes } from 'react'
+import { withRouter } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
 import { graphql, compose } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import { Checkbox, Button, Input } from '../../elements/Field/Field'
+import { Errors } from '../../elements/Errors/Errors'
 
 import s from './LoginForm.scss'
 
@@ -27,6 +28,7 @@ class LoginForm extends Component {
     super(props)
 
     this.state = {
+      errors: [],
       isResetPasswordForm: false
     }
 
@@ -44,9 +46,9 @@ class LoginForm extends Component {
     return this.props.mutate({
       variables: input
     }).then(({ data }) => {
-      console.log('got data', data)
+      this.props.router.push('/admin/dashboard')
     }).catch(err => {
-      console.error(err)
+      this.setState({ errors: [err.message] })
     })
   }
 
@@ -73,11 +75,13 @@ class LoginForm extends Component {
 
   render () {
     const { handleSubmit, invalid, pristine, submitting } = this.props
+    const { errors } = this.state
     const { isResetPasswordForm } = this.state
     const label = (isResetPasswordForm) ? 'Reset Password' : 'Login'
 
     return (
       <form onSubmit={handleSubmit(this.submitHandler)}>
+        {(errors.length) ? <Errors list={errors} /> : null}
         <Field component={Input}
           label='Username or Email'
           id='username'
@@ -95,6 +99,7 @@ LoginForm.propTypes = {
   invalid: PropTypes.bool,
   mutate: PropTypes.func,
   pristine: PropTypes.bool,
+  router: PropTypes.object,
   submitting: PropTypes.bool
 }
 
@@ -112,5 +117,6 @@ const mutation = gql`
 
 export default compose(
   graphql(mutation),
-  reduxForm({ form: 'LoginForm', validate })
+  reduxForm({ form: 'LoginForm', validate }),
+  withRouter
 )(LoginForm)
