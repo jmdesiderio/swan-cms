@@ -2,13 +2,14 @@
 import React from 'react'
 import { Router, Route, IndexRedirect } from 'react-router'
 
-import App from './containers/App/App'
 import {
   requireAuthOnEnter,
   requireAuthOnChange,
   requireNoAuthOnEnter,
   requireNoAuthOnChange
 } from './auth'
+
+import App from './containers/App/App'
 
 import MainLayout from './layouts/MainLayout/MainLayout'
 import LoginLayout from './layouts/LoginLayout/LoginLayout'
