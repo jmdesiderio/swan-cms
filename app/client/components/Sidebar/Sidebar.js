@@ -20,9 +20,9 @@ export default class Sidebar extends Component {
     }
   }
 
-  renderLink (link) {
+  renderLink (link, index) {
     return (
-      <li>
+      <li key={index}>
         <Link className={s.link}
           activeClassName={s.activeLink}
           to={link.to}>
