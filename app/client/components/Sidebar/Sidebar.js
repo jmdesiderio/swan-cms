@@ -5,53 +5,39 @@ import { Link } from 'react-router'
 import s from './Sidebar.scss'
 
 export default class Sidebar extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      links: [
+        { text: 'Dashboard', to: '/admin/dashboard' },
+        { text: 'Entries', to: '/admin/entries' },
+        { text: 'Globals', to: '/admin/globals' },
+        { text: 'Categories', to: '/admin/categories' },
+        { text: 'Assets', to: '/admin/assets' },
+        { text: 'Settings', to: '/admin/settings' }
+      ]
+    }
+  }
+
+  renderLink (link) {
+    return (
+      <li>
+        <Link className={s.link}
+          activeClassName={s.activeLink}
+          to={link.to}>
+          {link.text}
+        </Link>
+      </li>
+    )
+  }
+
   render () {
     return (
       <header className={s.root}>
         <nav className={s.nav}>
           <ul>
-            <li>
-              <Link className={s.link}
-                activeClassName={s.activeLink}
-                to='/admin/dashboard'>
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link className={s.link}
-                activeClassName={s.activeLink}
-                to='/admin/entries'>
-                Entries
-              </Link>
-            </li>
-            <li>
-              <Link className={s.link}
-                activeClassName={s.activeLink}
-                to='/admin/globals'>
-                Globals
-              </Link>
-            </li>
-            <li>
-              <Link className={s.link}
-                activeClassName={s.activeLink}
-                to='/admin/categories'>
-                Categories
-              </Link>
-            </li>
-            <li>
-              <Link className={s.link}
-                activeClassName={s.activeLink}
-                to='/admin/assets'>
-                Assets
-              </Link>
-            </li>
-            <li>
-              <Link className={s.link}
-                activeClassName={s.activeLink}
-                to='/admin/settings'>
-                Settings
-              </Link>
-            </li>
+            {this.state.links.map(this.renderLink)}
           </ul>
         </nav>
       </header>
