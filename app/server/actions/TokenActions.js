@@ -1,25 +1,25 @@
 import jwt from 'jsonwebtoken'
 
-export function verifyToken (req, res) {
-  if (req.cookies.token) {
+export function verifyAuthToken (req, res) {
+  if (req.cookies.authToken) {
     try {
-      req.user = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET)
+      req.user = jwt.verify(req.cookies.authToken, process.env.TOKEN_SECRET)
     } catch (err) {
       console.error(err.name, '-', err.message)
-      res.clearCookie('token')
+      res.clearCookie('authToken')
     }
   }
 }
 
-export function createToken ({ id, admin }) {
+export function createAuthToken ({ id, admin }) {
   return jwt.sign({
     id,
     admin
   }, process.env.TOKEN_SECRET, { expiresIn: '30m' })
 }
 
-export function setTokenCookie (res, user) {
-  const token = createToken(user)
+export function setAuthTokenCookie (res, user) {
+  const authToken = createAuthToken(user)
 
-  res.cookie('token', token)
+  res.cookie('authToken', authToken)
 }

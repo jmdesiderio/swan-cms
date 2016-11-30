@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 
-import { setTokenCookie } from './TokenActions'
+import { setAuthTokenCookie } from './TokenActions'
 import User from '../models/UserModel'
 
 export function loginAuth (username, password, res) {
@@ -12,7 +12,7 @@ export function loginAuth (username, password, res) {
 
       if (!isValid) throw new Error('Invalid Login')
 
-      setTokenCookie(res, user)
+      setAuthTokenCookie(res, user)
 
       return user
     })
@@ -23,6 +23,6 @@ export function loginAuth (username, password, res) {
 }
 
 export function logoutAuth (res) {
-  res.clearCookie('token')
+  res.clearCookie('authToken')
   return true
 }
