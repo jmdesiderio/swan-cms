@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react'
 
-export default class NoMatchView extends Component {
+export default class EntriesView extends Component {
   render () {
     return (
-      <h1>No Match View</h1>
+      <h1>Entries View</h1>
     )
   }
 }

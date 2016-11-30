@@ -1,0 +1,31 @@
+@import '../../styles/variables';
+
+.root {
+  background: $oil;
+  width: 13.75rem;
+}
+
+.nav {
+  font-size: .75rem;
+}
+
+.link {
+  border: 0;
+  color: $gainsboro;
+  display: block;
+  padding: .5rem 1rem;
+
+  &:hover {
+    background: rgba($white, .05);
+    border: 0;
+  }
+
+  &:focus {
+    background: rgba($white, .1);
+  }
+}
+
+.activeLink {
+  background: rgba($white, .1);
+  color: $white;
+}

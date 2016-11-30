@@ -1,16 +1,17 @@
 // @flow
-
 import React, { PropTypes } from 'react'
 
 import Sidebar from '../../components/Sidebar/Sidebar'
 
+import s from './MainLayout.scss'
+
 function MainLayout ({ children }) {
   return (
-    <div>
+    <div className={s.root}>
       <Sidebar />
-      <div>
+      <main className={s.main}>
         {children}
-      </div>
+      </main>
     </div>
   )
 }
