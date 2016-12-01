@@ -36,4 +36,10 @@ export default class User extends Model {
       uuid: { type: 'string', format: 'date-time' }
     }
   }
+
+  static virtualAttributes = ['isValid']
+
+  get isValid () {
+    return !this.locked && !this.suspended && !this.pending && !this.archived
+  }
 }

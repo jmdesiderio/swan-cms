@@ -8,9 +8,8 @@ export function loginAuth (username, password, res) {
     .where('username', username)
     .then((users) => {
       const user = users[0]
-      const isValid = bcrypt.compareSync(password, user.password)
-
-      if (!isValid) throw new Error('Invalid Login')
+      const isPasswordValid = bcrypt.compareSync(password, user.password)
+      if (!user.isValid || !isPasswordValid) throw new Error('Invalid Login')
 
       setAuthTokenCookie(res, user)
 

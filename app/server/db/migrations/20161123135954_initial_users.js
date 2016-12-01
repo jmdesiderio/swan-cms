@@ -22,7 +22,7 @@ exports.up = (knex, Promise) => {
     table.timestamp('verificationCodeIssuedDate')
     table.string('unverifiedEmail')
     table.boolean('passwordResetRequired').notNullable().defaultTo(false)
-    table.timestamp('lastPasswordChangeDate')
+    table.timestamp('lastPasswordChangeDate').notNullable().defaultTo(knex.raw('now()'))
     table.timestamp('createdAt').notNullable().defaultTo(knex.raw('now()'))
     table.timestamp('updatedAt').notNullable().defaultTo(knex.raw('now()'))
     table.uuid('uuid').index().notNullable().defaultTo(knex.raw('gen_random_uuid()'))
