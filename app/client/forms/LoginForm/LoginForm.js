@@ -1,8 +1,9 @@
 // @flow
 import React, { Component, PropTypes } from 'react'
 import { withRouter } from 'react-router'
+import { compose } from 'redux'
 import { Field, reduxForm } from 'redux-form'
-import { graphql, compose } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import { Checkbox, Button, Input } from '../../elements/Field/Field'

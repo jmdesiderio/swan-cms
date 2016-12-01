@@ -1,15 +1,13 @@
 {
+  "parser": "babel-eslint",
   "extends": [
     "standard",
-    "standard-react",
-    "plugin:flowtype/recommended"
+    "standard-react"
   ],
   "plugins": [
     "babel",
-    "flowtype",
     "react",
-    "promise",
-    "graphql"
+    "promise"
   ],
   "globals": {
     "__DEV__": false,
