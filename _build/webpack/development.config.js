@@ -15,7 +15,7 @@ module.exports = {
         loader: 'babel',
         query: {
           cacheDirectory: true,
-          presets: ['latest', 'react']
+          presets: ['latest', 'react', 'stage-0']
         }
       },
       {
