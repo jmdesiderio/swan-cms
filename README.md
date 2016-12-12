@@ -12,12 +12,14 @@
 ## Database
 ### Setup
 - `CREATE EXTENSION IF NOT EXISTS "pgcrypto";`
+
 ### Migrations
 - `npm run knex -- migrate:latest`
 
 ## .env
 ### Template
-```{
+```json
+{
   "node": {
     "env": "development"
   },
@@ -31,4 +33,5 @@
     "username": "",
     "password": ""
   }
-}```
+}
+```
