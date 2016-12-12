@@ -1,7 +1,8 @@
 // @flow
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 
+import { Icon } from '../../elements/Icon/Icon'
 import s from './Sidebar.scss'
 
 export default class Sidebar extends Component {
@@ -33,14 +34,30 @@ export default class Sidebar extends Component {
   }
 
   render () {
+    const { currentUser } = this.props.data
+
     return (
       <header className={s.root}>
+        <div className={s.top}>
+          SITENAME
+        </div>
         <nav className={s.nav}>
           <ul>
             {this.state.links.map(this.renderLink)}
           </ul>
         </nav>
+        <div className={s.bottom}>
+          <Icon className={s.userIcon} type='user' />
+          <div className={s.user}>
+            <div>{currentUser.username}</div>
+            <Link to='/admin/logout'>Logout</Link>
+          </div>
+        </div>
       </header>
     )
   }
+}
+
+Sidebar.propTypes = {
+  data: PropTypes.object
 }

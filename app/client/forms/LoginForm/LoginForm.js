@@ -8,21 +8,7 @@ import gql from 'graphql-tag'
 
 import { Checkbox, Button, Input } from '../../elements/Field/Field'
 import { Errors } from '../../elements/Errors/Errors'
-
 import s from './LoginForm.scss'
-
-const validate = values => {
-  const errors = {}
-  if (!values.username) {
-    errors.username = 'Username is required'
-  }
-  if (!values.password) {
-    errors.password = 'Password is required'
-  } else if (values.password.length < 8) {
-    errors.password = 'Password must be 8 or more characters'
-  }
-  return errors
-}
 
 class LoginForm extends Component {
   constructor (props) {
@@ -102,6 +88,19 @@ LoginForm.propTypes = {
   pristine: PropTypes.bool,
   router: PropTypes.object,
   submitting: PropTypes.bool
+}
+
+const validate = values => {
+  const errors = {}
+  if (!values.username) {
+    errors.username = 'Username is required'
+  }
+  if (!values.password) {
+    errors.password = 'Password is required'
+  } else if (values.password.length < 8) {
+    errors.password = 'Password must be 8 or more characters'
+  }
+  return errors
 }
 
 const mutation = gql`

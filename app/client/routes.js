@@ -6,7 +6,8 @@ import {
   requireAuthOnEnter,
   requireAuthOnChange,
   requireNoAuthOnEnter,
-  requireNoAuthOnChange
+  requireNoAuthOnChange,
+  logout
 } from './auth'
 
 import App from './containers/App/App'
@@ -38,6 +39,7 @@ export default (history) => (
         <Route path='categories' component={CategoriesView} />
         <Route path='assets' component={AssetsView} />
         <Route path='settings' component={SettingsView} />
+        <Route path='logout' onEnter={logout} />
       </Route>
       <Route component={LoginLayout}
         onEnter={requireNoAuthOnEnter}

@@ -46,7 +46,7 @@ export default class User extends Model {
   }
 
   getFullName () {
-    return `${this.firstName} ${this.lastName}`.trim()
+    return `${this.firstName || ''} ${this.lastName || ''}`.trim()
   }
 
   getName () {

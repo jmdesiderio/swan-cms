@@ -24,5 +24,10 @@ export const schema = `
     createdAt: String
     updatedAt: String
     uuid: ID
+
+    getFullName: String
+    getName: String
+    getFriendlyName: String
+    getStatus: String
   }
 `

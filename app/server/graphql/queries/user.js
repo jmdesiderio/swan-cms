@@ -1,15 +1,16 @@
-import { getUser } from '../../actions/UserActions'
+import { getUserById } from '../../actions/UserActions'
 
 export const schema = `
-  user: User
-  getUser(id: Int): User
+  currentUser: User
+  getUserById(id: Int): User
 `
 
 export const resolvers = {
-  user: (root, input, context) => {
-    return getUser(context.req.user.id)
+  currentUser: (root, input, context) => {
+    if (!context.req.user) throw new Error('No user session, need to log in')
+    return getUserById(context.req.user.id)
   },
-  getUser: (root, { id }, context) => {
-    return getUser(id)
+  getUserById: (root, { id }, context) => {
+    return getUserById(id)
   }
 }

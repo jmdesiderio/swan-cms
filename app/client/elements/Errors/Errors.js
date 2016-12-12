@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import s from './errors.scss'
+import s from './Errors.scss'
 
 export const Errors = ({ list }) => (
   <ul className={s.root}>

@@ -2,10 +2,21 @@
 
 .root {
   background: $oil;
+  color: $gainsboro;
+  display: flex;
+  flex-direction: column;
   width: 13.75rem;
 }
 
+.top {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem;
+}
+
 .nav {
+  flex: 1 1 auto;
   font-size: .75rem;
 }
 
@@ -28,4 +39,23 @@
 .activeLink {
   background: rgba($white, .1);
   color: $white;
+}
+
+.bottom {
+  display: flex;
+  font-size: .875rem;
+  padding: 1rem;
+}
+
+.userIcon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.user {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  padding: 0 0 0 1rem;
 }

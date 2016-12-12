@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 
 import User from '../models/UserModel'
 
-export function getUser (id) {
+export function getUserById (id) {
   return User
     .query()
     .findById(id)
