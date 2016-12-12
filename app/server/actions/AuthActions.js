@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 
 import { setAuthTokenCookie } from './TokenActions'
 import User from '../models/UserModel'
+import { USER_STATUS } from '../constants/UserConstants'
 
 export function loginAuth (username, password, res) {
   return User.query()
@@ -9,7 +10,10 @@ export function loginAuth (username, password, res) {
     .then((users) => {
       const user = users[0]
       const isPasswordValid = bcrypt.compareSync(password, user.password)
-      if (!user.isValid || !isPasswordValid) throw new Error('Invalid Login')
+
+      if (user.getStatus() !== USER_STATUS.ACTIVE || !isPasswordValid) {
+        throw new Error('Invalid Login')
+      }
 
       setAuthTokenCookie(res, user)
 

@@ -1,4 +1,5 @@
 import { Model } from 'objection'
+import { USER_STATUS } from '../constants/UserConstants'
 
 export default class User extends Model {
   static tableName = 'users'
@@ -37,9 +38,31 @@ export default class User extends Model {
     }
   }
 
-  static virtualAttributes = ['isValid']
+  $beforeInsert () {
+    this.username = this.username.trim()
+    if (this.firstName) this.firstName = this.firstName.trim()
+    if (this.lastName) this.lastName = this.lastName.trim()
+    this.email = this.email.trim()
+  }
 
-  get isValid () {
-    return !this.locked && !this.suspended && !this.pending && !this.archived
+  getFullName () {
+    return `${this.firstName} ${this.lastName}`.trim()
+  }
+
+  getName () {
+    return this.getFullName() || this.username
+  }
+
+  getFriendlyName () {
+    return this.firstName || this.username
+  }
+
+  getStatus () {
+    if (this.locked) return USER_STATUS.LOCKED
+    if (this.suspended) return USER_STATUS.SUSPENDED
+    if (this.archived) return USER_STATUS.ARCHIVED
+    if (this.pending) return USER_STATUS.PENDING
+
+    return USER_STATUS.ACTIVE
   }
 }
