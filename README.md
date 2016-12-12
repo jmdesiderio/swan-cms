@@ -14,3 +14,21 @@
 - `CREATE EXTENSION IF NOT EXISTS "pgcrypto";`
 ### Migrations
 - `npm run knex -- migrate:latest`
+
+## .env
+### Template
+```{
+  "node": {
+    "env": "development"
+  },
+  "token": {
+    "secret": ""
+  },
+  "db": {
+    "client": "pg",
+    "host": "localhost",
+    "database": "",
+    "username": "",
+    "password": ""
+  }
+}```
