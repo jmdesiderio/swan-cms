@@ -49,7 +49,7 @@ export default class Sidebar extends Component {
         <div className={s.bottom}>
           <Icon className={s.userIcon} type='user' />
           <div className={s.user}>
-            <div>{currentUser.username}</div>
+            <div>{currentUser.getName}</div>
             <Link to='/admin/logout'>Logout</Link>
           </div>
         </div>

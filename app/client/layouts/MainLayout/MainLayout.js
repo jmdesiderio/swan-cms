@@ -28,7 +28,7 @@ MainLayout.propTypes = {
 const query = gql`
   query currentUser {
     currentUser {
-      username
+      getName
     }
   }
 `

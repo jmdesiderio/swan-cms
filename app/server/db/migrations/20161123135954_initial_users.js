@@ -15,7 +15,7 @@ exports.up = (knex, Promise) => {
     table.timestamp('lastLoginDate')
     table.string('lastLoginAttemptIp', 45)
     table.timestamp('invalidLoginWindowStart')
-    table.integer('invalidLoginCount').unsigned()
+    table.integer('invalidLoginCount').unsigned().defaultTo(0)
     table.timestamp('lastInvalidLoginDate')
     table.timestamp('lockoutDate')
     table.string('verificationCode', 100).index()

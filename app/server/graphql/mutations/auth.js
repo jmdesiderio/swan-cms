@@ -7,7 +7,7 @@ export const schema = `
 
 export const resolvers = {
   loginAuth: (root, { username, password }, context) => {
-    return loginAuth(username, password, context.res)
+    return loginAuth(username, password, context.req, context.res)
   },
   logoutAuth: (root, input, context) => {
     return logoutAuth(context.res)
