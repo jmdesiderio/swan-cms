@@ -9,5 +9,8 @@
 - storage
 - templates
 
-## Database set up
+## Database
+### Setup
 - `CREATE EXTENSION IF NOT EXISTS "pgcrypto";`
+### Migrations
+- `npm run knex -- migrate:latest`
