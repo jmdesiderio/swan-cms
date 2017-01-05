@@ -13,9 +13,9 @@ export function verifyAuthToken (req, res) {
   }
 }
 
-export function createAuthToken ({ id, admin }) {
+export function createAuthToken ({ id }) {
   return jwt.sign(
-    { id, admin },
+    { id },
     process.env.TOKEN_SECRET,
     { expiresIn: '30m' }
   )

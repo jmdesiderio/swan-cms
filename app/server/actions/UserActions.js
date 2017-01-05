@@ -14,11 +14,7 @@ export function createUser ({
   lastName,
   email,
   password,
-  passwordConfirmation,
-  admin,
-  client,
-  pending,
-  passwordResetRequired
+  passwordConfirmation
 }) {
   if (password !== passwordConfirmation) {
     throw new Error('Passwords do not match')
@@ -33,10 +29,6 @@ export function createUser ({
       firstName,
       lastName,
       email,
-      password: hash,
-      admin,
-      client,
-      pending,
-      passwordResetRequired
+      password: hash
     })
 }

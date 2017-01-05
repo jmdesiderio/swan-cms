@@ -6,9 +6,5 @@ export const schema = `
     email: String!
     password: String!
     passwordConfirmation: String!
-    admin: Boolean
-    client: Boolean
-    pending: Boolean
-    passwordResetRequired: Boolean
   }
 `

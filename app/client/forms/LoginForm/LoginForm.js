@@ -110,7 +110,6 @@ const mutation = gql`
       password: $password
     ) {
       id
-      admin
     }
   }
 `
