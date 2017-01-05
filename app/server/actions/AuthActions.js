@@ -10,16 +10,16 @@ export function loginAuth (username, password, req, res) {
     .where('username', username)
     .then((users) => {
       const user = users[0]
-      const isPasswordValid = bcrypt.compareSync(password, user.password)
 
       if (user.getStatus() !== USER_STATUS.ACTIVE) {
         return user.$query()
-          .patch({
-            lastLoginAttemptIp: req.ip
+          .patch({ lastLoginAttemptIp: req.ip })
+          .then(() => {
+            throw new Error('Invalid Login')
           })
-          .then(() => { throw new Error('Invalid Login') })
       }
 
+      const isPasswordValid = bcrypt.compareSync(password, user.password)
       if (!isPasswordValid) {
         let patchObject = {
           invalidLoginCount: user.invalidLoginCount + 1,
@@ -49,8 +49,7 @@ export function loginAuth (username, password, req, res) {
           return user
         })
     })
-    .catch(err => {
-      console.error(err)
+    .catch(() => {
       throw new Error('Invalid Login')
     })
 }

@@ -29,11 +29,7 @@ app.use('/admin', express.Router().get('*', (req, res) => {
 // GRAPHQL
 app.use('/graphql', graphqlExpress((req, res) => {
   return {
-    context: {
-      req,
-      res,
-      user: req.user
-    },
+    context: { req, res },
     schema: schema,
     debug: true
   }
@@ -52,6 +48,4 @@ app.get('*', (req, res) => {
 })
 
 // START
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!')
-})
+app.listen(3000, () => console.log('Listening on port 3000'))
