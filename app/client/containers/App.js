@@ -1,9 +1,10 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import '../../styles/style.scss'
+import '../styles/style.scss'
 import s from './App.scss'
 
 export default class App extends Component {
@@ -18,5 +19,5 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.node
 }

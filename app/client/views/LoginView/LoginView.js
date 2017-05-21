@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react'
 
-import LoginForm from '../../forms/LoginForm/LoginForm'
+import LoginForm from '../../forms/LoginForm'
 
 import s from './LoginView.scss'
 

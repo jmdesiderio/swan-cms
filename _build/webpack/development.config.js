@@ -1,40 +1,56 @@
 // @flow
+const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 console.log('webpack nodeenv', process.env.NODE_ENV)
 
 module.exports = {
-  devtool: 'source-map',
   entry: './app/client/index.js',
+  output: {
+    path: path.resolve(__dirname, '../../public'),
+    filename: 'app.min.js'
+  },
+  devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          cacheDirectory: true,
-          presets: ['latest', 'react', 'stage-0']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            presets: [ 'latest', 'react', 'stage-0' ]
+          }
         }
       },
       {
-        test: /\.json$/,
-        loader: 'json'
-      },
-      {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract([
-          'css?sourceMap&-minimize&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss',
-          'sass'
-        ])
+        use: ExtractTextPlugin.extract({
+          use: [{
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              modules: true,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')({ browsers: ['last 2 versions'] })
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }]
+        })
       }
     ]
-  },
-  output: {
-    path: 'public',
-    filename: 'app.min.js'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -42,8 +58,5 @@ module.exports = {
       __PROD__: process.env.NODE_ENV === 'production'
     }),
     new ExtractTextPlugin('style.min.css')
-  ],
-  postcss: [
-    require('autoprefixer')({ browsers: ['last 2 versions'] })
   ]
 }

@@ -1,8 +1,9 @@
 // @flow
-import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Link, NavLink } from 'react-router-dom'
 
-import { Icon } from '../../elements/Icon/Icon'
+import { Icon } from '../elements/Icon/Icon'
 import s from './Sidebar.scss'
 
 export default class Sidebar extends Component {
@@ -11,12 +12,12 @@ export default class Sidebar extends Component {
 
     this.state = {
       links: [
-        { text: 'Dashboard', to: '/admin/dashboard' },
-        { text: 'Entries', to: '/admin/entries' },
-        { text: 'Globals', to: '/admin/globals' },
-        { text: 'Categories', to: '/admin/categories' },
-        { text: 'Assets', to: '/admin/assets' },
-        { text: 'Settings', to: '/admin/settings' }
+        { text: 'Dashboard', to: '/admin/config/dashboard' },
+        { text: 'Entries', to: '/admin/config/entries' },
+        { text: 'Globals', to: '/admin/config/globals' },
+        { text: 'Categories', to: '/admin/config/categories' },
+        { text: 'Assets', to: '/admin/config/assets' },
+        { text: 'Settings', to: '/admin/config/settings' }
       ]
     }
   }
@@ -24,11 +25,11 @@ export default class Sidebar extends Component {
   renderLink (link, index) {
     return (
       <li key={index}>
-        <Link className={s.link}
+        <NavLink className={s.link}
           activeClassName={s.activeLink}
           to={link.to}>
           {link.text}
-        </Link>
+        </NavLink>
       </li>
     )
   }

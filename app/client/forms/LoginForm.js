@@ -1,13 +1,14 @@
 // @flow
-import React, { Component, PropTypes } from 'react'
-import { withRouter } from 'react-router'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import { Field, reduxForm } from 'redux-form'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import { Checkbox, Button, Input } from '../../elements/Field/Field'
-import { Errors } from '../../elements/Errors/Errors'
+import { Checkbox, Button, Input } from '../elements/Field/Field'
+import { Errors } from '../elements/Errors/Errors'
 import s from './LoginForm.scss'
 
 class LoginForm extends Component {
@@ -33,7 +34,7 @@ class LoginForm extends Component {
     return this.props.mutate({
       variables: input
     }).then(({ data }) => {
-      this.props.router.push('/admin/dashboard')
+      this.props.history.push('/admin/config')
     }).catch(err => {
       this.setState({ errors: [err.message] })
     })
@@ -83,10 +84,10 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func,
+  history: PropTypes.object,
   invalid: PropTypes.bool,
   mutate: PropTypes.func,
   pristine: PropTypes.bool,
-  router: PropTypes.object,
   submitting: PropTypes.bool
 }
 

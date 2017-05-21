@@ -1,10 +1,11 @@
 // @flow
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import Sidebar from '../../components/Sidebar/Sidebar'
+import Sidebar from '../components/Sidebar'
 import s from './MainLayout.scss'
 
 class MainLayout extends Component {
@@ -21,7 +22,7 @@ class MainLayout extends Component {
 }
 
 MainLayout.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   data: PropTypes.object
 }
 
