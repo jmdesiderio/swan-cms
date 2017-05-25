@@ -13,6 +13,9 @@
 - Figure out plug in architecture
 - Create production build with optimizations
 - Look into webpack-blocks
+- a11y audit
+- l18n audit
+- security audit
 
 ## App Directory Structure
 

@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs'
-
 import User from '../models/UserModel'
 
 export function getUserById (id) {

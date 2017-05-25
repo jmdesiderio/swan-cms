@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs'
-
 import { setAuthTokenCookie, removeAuthTokenCookie } from './TokenActions'
 import User from '../models/UserModel'
 
