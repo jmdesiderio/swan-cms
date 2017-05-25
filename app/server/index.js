@@ -4,17 +4,19 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
-import schema from './graphql'
 import nunjucks from 'nunjucks'
 
 import { authMiddleware } from './auth'
+import schema from './graphql'
 import './db'
 
 const app = express()
+app.set('port', (process.env.PORT || 3000))
+
 app.use(cookieParser())
 app.use(bodyParser.json())
-app.use(express.static('public'))
 app.use(authMiddleware())
+app.use(express.static('public'))
 
 nunjucks.configure('templates', {
   autoescape: true,
@@ -48,4 +50,6 @@ app.get('*', (req, res) => {
 })
 
 // START
-app.listen(3000, () => console.log('Listening on port 3000'))
+app.listen(app.get('port'), () => {
+  console.log('Node app is running on port', app.get('port'))
+})

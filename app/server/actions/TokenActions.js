@@ -2,17 +2,6 @@ import jwt from 'jsonwebtoken'
 
 const authTokenName = 'authToken'
 
-export function verifyAuthToken (req, res) {
-  if (req.cookies.authToken) {
-    try {
-      req.user = jwt.verify(req.cookies.authToken, process.env.TOKEN_SECRET)
-    } catch (err) {
-      console.error(err.name, '-', err.message)
-      removeAuthTokenCookie(res)
-    }
-  }
-}
-
 export function createAuthToken ({ id }) {
   return jwt.sign(
     { id },
