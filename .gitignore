@@ -43,3 +43,4 @@ jspm_packages
 
 # Local
 .DS_Store
+.vscode
