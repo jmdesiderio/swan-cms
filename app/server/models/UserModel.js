@@ -1,21 +1,23 @@
-import { Model } from 'objection'
+const { Model } = require('objection')
 
-export default class User extends Model {
-  static tableName = 'users'
+class User extends Model {
+  static get tableName () { return 'users' }
 
-  static jsonSchema = {
-    type: 'object',
-    required: ['username', 'email', 'password'],
+  static get jsonSchema () {
+    return {
+      type: 'object',
+      required: ['username', 'email', 'password'],
 
-    properties: {
-      id: { type: 'integer' },
-      username: { type: 'string', minLength: 1, maxLength: 100 },
-      firstName: { type: 'string', minLength: 1, maxLength: 100 },
-      lastName: { type: 'string', minLength: 1, maxLength: 100 },
-      email: { type: 'string', format: 'email', minLength: 1, maxLength: 255 },
-      password: { type: 'string', minLength: 1, maxLength: 255 },
-      createdAt: { type: 'string', format: 'date-time' },
-      updatedAt: { type: 'string', format: 'date-time' }
+      properties: {
+        id: { type: 'integer' },
+        username: { type: 'string', minLength: 1, maxLength: 100 },
+        firstName: { type: 'string', minLength: 1, maxLength: 100 },
+        lastName: { type: 'string', minLength: 1, maxLength: 100 },
+        email: { type: 'string', format: 'email', minLength: 1, maxLength: 255 },
+        password: { type: 'string', minLength: 1, maxLength: 255 },
+        createdAt: { type: 'string', format: 'date-time' },
+        updatedAt: { type: 'string', format: 'date-time' }
+      }
     }
   }
 
@@ -38,3 +40,5 @@ export default class User extends Model {
     return this.firstName || this.username
   }
 }
+
+module.exports = User

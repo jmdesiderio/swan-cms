@@ -1,4 +1,4 @@
-export const schema = `
+const schema = `
   input UserInput {
     username: String!
     firstName: String
@@ -8,3 +8,7 @@ export const schema = `
     passwordConfirmation: String!
   }
 `
+
+module.exports = {
+  schema
+}

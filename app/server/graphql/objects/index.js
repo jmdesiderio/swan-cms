@@ -1,11 +1,16 @@
-import merge from 'lodash/merge'
+const merge = require('lodash/merge')
 
-import { schema as UserSchema } from './User'
+const { schema: UserSchema } = require('./User')
 
-export const schema = [
+const schema = [
   UserSchema
 ]
 
-export const resolvers = merge(
+const resolvers = merge(
   {}
 )
+
+module.exports = {
+  schema,
+  resolvers
+}

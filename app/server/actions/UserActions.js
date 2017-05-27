@@ -1,13 +1,13 @@
-import bcrypt from 'bcryptjs'
-import User from '../models/UserModel'
+const bcrypt = require('bcryptjs')
+const User = require('../models/UserModel')
 
-export function getUserById (id) {
+function getUserById (id) {
   return User
     .query()
     .findById(id)
 }
 
-export function createUser ({
+function createUser ({
   username,
   firstName,
   lastName,
@@ -30,4 +30,12 @@ export function createUser ({
       email,
       password: hash
     })
+    .catch((err) => {
+      throw new Error(err)
+    })
+}
+
+module.exports = {
+  getUserById,
+  createUser
 }

@@ -1,10 +1,10 @@
-import merge from 'lodash/merge'
-import { makeExecutableSchema } from 'graphql-tools'
+const merge = require('lodash/merge')
+const { makeExecutableSchema } = require('graphql-tools')
 
-import { schema as QuerySchema, resolvers as QueryResolvers } from './queries'
-import { schema as MutationSchema, resolvers as MutationResolvers } from './mutations'
-import { schema as ObjectSchema, resolvers as ObjectResolvers } from './objects'
-import { schema as InputSchema, resolvers as InputResolvers } from './inputs'
+const { schema: QuerySchema, resolvers: QueryResolvers } = require('./queries')
+const { schema: MutationSchema, resolvers: MutationResolvers } = require('./mutations')
+const { schema: ObjectSchema, resolvers: ObjectResolvers } = require('./objects')
+const { schema: InputSchema, resolvers: InputResolvers } = require('./inputs')
 
 const schema = [`
   schema {
@@ -13,7 +13,7 @@ const schema = [`
   }
 `]
 
-export default makeExecutableSchema({
+const executableSchema = makeExecutableSchema({
   typeDefs: [
     ...schema,
     ...QuerySchema,
@@ -28,3 +28,5 @@ export default makeExecutableSchema({
     InputResolvers
   )
 })
+
+module.exports = executableSchema

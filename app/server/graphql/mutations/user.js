@@ -1,11 +1,16 @@
-import { createUser } from '../../actions/UserActions'
+const { createUser } = require('../../actions/UserActions')
 
-export const schema = `
+const schema = `
   createUser(input: UserInput): User
 `
 
-export const resolvers = {
+const resolvers = {
   createUser: (root, { input }, context) => {
-    return createUser({ ...input })
+    return createUser(input)
   }
+}
+
+module.exports = {
+  schema,
+  resolvers
 }

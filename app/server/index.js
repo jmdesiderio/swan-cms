@@ -1,14 +1,14 @@
 // @flow
-import path from 'path'
-import express from 'express'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
-import nunjucks from 'nunjucks'
+const path = require('path')
+const express = require('express')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const { graphqlExpress, graphiqlExpress } = require('graphql-server-express')
+const nunjucks = require('nunjucks')
 
-import { authMiddleware } from './auth'
-import schema from './graphql'
-import './db'
+const { authMiddleware } = require('./auth')
+const schema = require('./graphql')
+require('./db')
 
 const app = express()
 app.set('port', (process.env.PORT || 3000))

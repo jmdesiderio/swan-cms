@@ -1,18 +1,23 @@
-import merge from 'lodash/merge'
+const merge = require('lodash/merge')
 
-import { schema as sessionSchema, resolvers as sessionResolvers } from './session'
-import { schema as userSchema, resolvers as userResolvers } from './user'
+const { schema: sessionSchema, resolvers: sessionResolvers } = require('./session')
+const { schema: userSchema, resolvers: userResolvers } = require('./user')
 
-export const schema = [`
+const schema = [`
   type Mutation {
     ${sessionSchema}
     ${userSchema}
   }
 `]
 
-export const resolvers = {
+const resolvers = {
   Mutation: merge(
     sessionResolvers,
     userResolvers
   )
+}
+
+module.exports = {
+  schema,
+  resolvers
 }

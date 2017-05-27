@@ -1,31 +1,37 @@
-import { Model } from 'objection'
-import User from './UserModel'
+const { Model } = require('objection')
+const User = require('./UserModel')
 
-export default class Session extends Model {
-  static tableName = 'sessions'
+class Session extends Model {
+  static get tableName () { return 'sessions' }
 
-  static jsonSchema = {
-    type: 'object',
-    required: ['userId'],
+  static get jsonSchema () {
+    return {
+      type: 'object',
+      required: ['userId'],
 
-    properties: {
-      id: { type: 'integer' },
-      userId: { type: 'integer' },
-      token: { type: 'string' },
-      enabled: { type: 'boolean' },
-      createdAt: { type: 'string', format: 'date-time' },
-      updatedAt: { type: 'string', format: 'date-time' }
+      properties: {
+        id: { type: 'integer' },
+        userId: { type: 'integer' },
+        token: { type: 'string' },
+        enabled: { type: 'boolean' },
+        createdAt: { type: 'string', format: 'date-time' },
+        updatedAt: { type: 'string', format: 'date-time' }
+      }
     }
   }
 
-  static relationMappings = {
-    user: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: User,
-      join: {
-        from: 'sessions.userId',
-        to: 'users.id'
+  static get relationMappings () {
+    return {
+      user: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: User,
+        join: {
+          from: 'sessions.userId',
+          to: 'users.id'
+        }
       }
     }
   }
 }
+
+module.exports = Session

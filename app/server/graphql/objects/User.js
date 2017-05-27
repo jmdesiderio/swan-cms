@@ -1,4 +1,4 @@
-export const schema = `
+const schema = `
   type User {
     id: ID!
     username: String
@@ -13,3 +13,7 @@ export const schema = `
     getFriendlyName: String
   }
 `
+
+module.exports = {
+  schema
+}

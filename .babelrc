@@ -1,11 +1,17 @@
 {
   "presets": [
-    "latest",
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions"]
+      },
+      "modules": false,
+      "loose": true
+    }],
     "react",
     "stage-0"
   ],
   "plugins": [
-    "transform-flow-strip-types",
+    "transform-flow-strip-types"
   ],
   "env": {
     "production": {

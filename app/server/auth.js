@@ -1,8 +1,8 @@
-import moment from 'moment'
-import { decrypt, logoutAuth, sessionTokenName } from './actions/SessionActions'
-import Session from './models/SessionModel'
+const moment = require('moment')
+const { decrypt, logoutAuth, sessionTokenName } = require('./actions/SessionActions')
+const Session = require('./models/SessionModel')
 
-export function authMiddleware () {
+function authMiddleware () {
   return (req, res, next) => {
     const sessionToken = req.cookies[sessionTokenName]
 
@@ -34,4 +34,8 @@ export function authMiddleware () {
           .then(() => next())
       })
   }
+}
+
+module.exports = {
+  authMiddleware
 }

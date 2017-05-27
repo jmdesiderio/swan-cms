@@ -1,14 +1,13 @@
-import crypto from 'crypto'
-import bcrypt from 'bcryptjs'
-import Session from '../models/SessionModel'
-import User from '../models/UserModel'
+const crypto = require('crypto')
+const bcrypt = require('bcryptjs')
+const Session = require('../models/SessionModel')
+const User = require('../models/UserModel')
 
+const sessionTokenName = 'sessionToken'
 const algorithm = 'aes-256-ctr'
 const secret = process.env.TOKEN_SECRET
 
-export const sessionTokenName = 'sessionToken'
-
-export function loginAuth (username, password, res) {
+function loginAuth (username, password, res) {
   return User.query()
     .where('username', username)
     .then((users) => {
@@ -25,12 +24,12 @@ export function loginAuth (username, password, res) {
       res.cookie(sessionTokenName, encryptedSessionToken)
       return true
     })
-    .catch(() => {
-      throw new Error('Invalid Login')
+    .catch((err) => {
+      throw new Error(err)
     })
 }
 
-export function logoutAuth (req, res) {
+function logoutAuth (req, res) {
   const sessionToken = req.cookies[sessionTokenName]
   if (!sessionToken) return false
 
@@ -43,9 +42,12 @@ export function logoutAuth (req, res) {
     .then((numRows) => {
       if (numRows === 1) return true
     })
+    .catch((err) => {
+      throw new Error(err)
+    })
 }
 
-export function encrypt (value) {
+function encrypt (value) {
   const cipher = crypto.createCipher(algorithm, secret)
   let crypted = cipher.update(value, 'utf8', 'hex')
   crypted += cipher.final('hex')
@@ -53,10 +55,18 @@ export function encrypt (value) {
   return crypted
 }
 
-export function decrypt (value) {
+function decrypt (value) {
   const decipher = crypto.createDecipher(algorithm, secret)
   let decrypted = decipher.update(value, 'hex', 'utf8')
   decrypted += decipher.final('utf8')
 
   return decrypted
+}
+
+module.exports = {
+  sessionTokenName,
+  loginAuth,
+  logoutAuth,
+  encrypt,
+  decrypt
 }

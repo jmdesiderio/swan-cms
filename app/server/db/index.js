@@ -1,6 +1,6 @@
-import Knex from 'knex'
-import knexConfig from '../../../_build/knexfile'
-import { Model } from 'objection'
+const Knex = require('knex')
+const knexConfig = require('../../../_build/knexfile')
+const { Model } = require('objection')
 
 const knex = Knex(knexConfig)
 Model.knex(knex)
