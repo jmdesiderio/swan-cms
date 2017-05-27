@@ -109,9 +109,7 @@ const mutation = gql`
     loginAuth(
       username: $username
       password: $password
-    ) {
-      id
-    }
+    )
   }
 `
 

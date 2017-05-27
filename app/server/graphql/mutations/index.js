@@ -1,18 +1,18 @@
 import merge from 'lodash/merge'
 
-import { schema as authSchema, resolvers as authResolvers } from './auth'
+import { schema as sessionSchema, resolvers as sessionResolvers } from './session'
 import { schema as userSchema, resolvers as userResolvers } from './user'
 
 export const schema = [`
   type Mutation {
-    ${authSchema}
+    ${sessionSchema}
     ${userSchema}
   }
 `]
 
 export const resolvers = {
   Mutation: merge(
-    authResolvers,
+    sessionResolvers,
     userResolvers
   )
 }

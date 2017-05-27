@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 
 const Auth = {
-  authTokenName: 'authToken',
+  authTokenName: 'sessionToken',
   isLoggedIn: () => Boolean(Cookies.get(Auth.authTokenName)),
   isAccessible: () => true
 }

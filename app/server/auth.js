@@ -1,38 +1,40 @@
-import jwt from 'jsonwebtoken'
-import { removeAuthTokenCookie } from './actions/TokenActions'
-import { getUserById } from './actions/UserActions'
-
-// import Session from './models/SessionModel'
+import moment from 'moment'
+import { decrypt, logoutAuth, sessionTokenName } from './actions/SessionActions'
+import Session from './models/SessionModel'
 
 export function authMiddleware () {
   return (req, res, next) => {
-    // Session.query()
-    //   .where('token', 'TEST')
-    //   .eager('user')
-    //   .then((sessions) => {
-    //     const session = sessions[0]
-    //     return session
-    //   })
-    //   .catch(() => {
-    //     throw new Error('Session expired. Please log in.')
-    //   })
+    const sessionToken = req.cookies[sessionTokenName]
 
-    if (!req.cookies.authToken) { return next() }
+    if (!sessionToken) { return next() }
 
-    let decodedToken
+    const decryptedSessionToken = decrypt(sessionToken)
 
-    try {
-      decodedToken = jwt.verify(req.cookies.authToken, process.env.TOKEN_SECRET)
-    } catch (err) {
-      console.error(err.name, '-', err.message)
-      removeAuthTokenCookie(res)
-      return next()
-    }
+    Session.query()
+      .where('token', decryptedSessionToken)
+      .eager('user')
+      .then((sessions) => {
+        const session = sessions[0]
 
-    const { id } = decodedToken
-    getUserById(id).then((user) => {
-      req.user = user
-      next()
-    })
+        const isExpired = moment(session.updatedAt).add(4, 'hours').isBefore(moment())
+        if (isExpired) throw new Error('Session expired')
+
+        if (session.disabled) throw new Error('Session disabled')
+
+        req.user = session.user
+
+        return session.$query()
+          .patch({ updatedAt: moment().format() })
+      })
+      .then((numRows) => {
+        if (numRows !== 1) throw new Error('Session time update failed')
+        next()
+      })
+      .catch((err) => {
+        console.error(err)
+
+        logoutAuth(req, res)
+          .then(() => next())
+      })
   }
 }

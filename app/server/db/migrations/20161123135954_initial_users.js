@@ -6,8 +6,8 @@ exports.up = (knex, Promise) => {
     table.string('lastName', 100)
     table.string('email').unique().notNullable()
     table.string('password').notNullable()
-    table.timestamp('createdAt').notNullable().defaultTo(knex.raw('now()'))
-    table.timestamp('updatedAt').notNullable().defaultTo(knex.raw('now()'))
+    table.timestamp('createdAt', true).notNullable().defaultTo(knex.raw('now()'))
+    table.timestamp('updatedAt', true).notNullable().defaultTo(knex.raw('now()'))
   })
 }
 

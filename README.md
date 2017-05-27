@@ -1,6 +1,7 @@
 # swan-cms
 
 ## Todo
+- Add a logger
 - Add router paths constants file to enable using named routes
 - Create data flow chart
 - Audit packages and remove or utilize

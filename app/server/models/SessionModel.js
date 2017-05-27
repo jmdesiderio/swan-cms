@@ -1,4 +1,3 @@
-import path from 'path'
 import { Model } from 'objection'
 import User from './UserModel'
 
@@ -7,12 +6,13 @@ export default class Session extends Model {
 
   static jsonSchema = {
     type: 'object',
-    required: ['username', 'email', 'password'],
+    required: ['userId'],
 
     properties: {
       id: { type: 'integer' },
       userId: { type: 'integer' },
-      token: { type: 'string', minLength: 1, maxLength: 100 },
+      token: { type: 'string' },
+      disabled: { type: 'boolean' },
       createdAt: { type: 'string', format: 'date-time' },
       updatedAt: { type: 'string', format: 'date-time' }
     }

@@ -3,9 +3,10 @@ exports.up = (knex, Promise) => {
     table.increments()
     table.integer('userId').unsigned().notNullable()
     table.foreign('userId').references('users.id')
-    table.string('token', 100).unique().notNullable()
-    table.timestamp('createdAt').notNullable().defaultTo(knex.raw('now()'))
-    table.timestamp('updatedAt').notNullable().defaultTo(knex.raw('now()'))
+    table.uuid('token').index().notNullable().defaultTo(knex.raw('gen_random_uuid()'))
+    table.boolean('disabled').notNullable().defaultTo(false)
+    table.timestamp('createdAt', true).notNullable().defaultTo(knex.raw('now()'))
+    table.timestamp('updatedAt', true).notNullable().defaultTo(knex.raw('now()'))
   })
 }
 
