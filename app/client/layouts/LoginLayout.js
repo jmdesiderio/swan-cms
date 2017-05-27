@@ -1,14 +1,20 @@
 // @flow
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import s from './LoginLayout.scss'
+const Wrapper = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+`
 
 function LoginLayout ({ children }) {
   return (
-    <div className={s.root}>
+    <Wrapper>
       {children}
-    </div>
+    </Wrapper>
   )
 }
 

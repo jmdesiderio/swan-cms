@@ -1,8 +1,12 @@
+// @flow
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import styled from 'styled-components'
 
-import s from './Icon.scss'
+const Svg = styled.svg`
+  fill: currentColor;
+  vertical-align: middle;
+`
 
 const renderIcon = {
   user: () => (
@@ -18,12 +22,12 @@ const renderIcon = {
 }
 
 export const Icon = ({ className, type, ...props }) => (
-  <svg className={classNames(s.root, className)}
+  <Svg className={className}
     viewBox='0 0 490 490'
     preserveAspectRatio='xMidYMid meet'
     {...props}>
     {renderIcon[type]()}
-  </svg>
+  </Svg>
 )
 
 Icon.propTypes = {

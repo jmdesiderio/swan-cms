@@ -6,10 +6,20 @@ import { compose } from 'redux'
 import { Field, reduxForm } from 'redux-form'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import styled from 'styled-components'
 
-import { Checkbox, Button, Input } from '../elements/Field/Field'
+import { Checkbox, Button, Input } from '../elements/Fields'
 import { Errors } from '../elements/Errors/Errors'
-import s from './LoginForm.scss'
+
+const Row = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+`
+
+const Link = styled.a`
+  font-size: .75rem;
+`
 
 class LoginForm extends Component {
   constructor (props) {
@@ -48,15 +58,14 @@ class LoginForm extends Component {
           id='password'
           name='password'
           type='password' />
-        <div className={s.row}>
+        <Row>
           <Field component={Checkbox}
             label='Keep me logged in'
             name='keepLoggedIn' />
-          <a className={s.link}
-            onClick={this.resetPasswordLinkHandler}>
+          <Link onClick={this.resetPasswordLinkHandler}>
             {'Forget your password?'}
-          </a>
-        </div>
+          </Link>
+        </Row>
       </div>
     )
   }

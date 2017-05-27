@@ -4,19 +4,28 @@ import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import styled from 'styled-components'
 
 import Sidebar from '../components/Sidebar'
-import s from './MainLayout.scss'
+
+const Wrapper = styled.div`
+  display: flex;
+  min-height: 100%
+`
+
+const Main = styled.main`
+  padding: 1.5rem;
+`
 
 class MainLayout extends Component {
   render () {
     return (this.props.data.loading) ? null : (
-      <div className={s.root}>
+      <Wrapper>
         <Sidebar data={this.props.data} />
-        <main className={s.main}>
+        <Main>
           {this.props.children}
-        </main>
-      </div>
+        </Main>
+      </Wrapper>
     )
   }
 }

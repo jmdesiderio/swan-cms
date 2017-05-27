@@ -1,3 +1,4 @@
+// @flow
 import Cookies from 'js-cookie'
 
 const Auth = {

@@ -1,19 +1,20 @@
 // @flow
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
-import '../styles/style.scss'
-import s from './AppContainer.scss'
+const Wrapper = styled.div`
+  height: 100%;
+`
 
 class AppContainer extends Component {
   render () {
     return (
-      <div className={s.root}>
+      <Wrapper>
         <Helmet title='Swan CMS Admin' />
         {this.props.children}
-      </div>
+      </Wrapper>
     )
   }
 }
