@@ -2,20 +2,19 @@
 
 ## Todo
 - Switch to styled-components using themeing
-- Add a logger
+- Add shared folder containing enums
+- Add user permissions
+- Add a node logger
 - Add router paths constants file to enable using named routes
 - Create data flow chart
 - Audit packages and remove or utilize
 - Dev server with auto refresh
-- Add shared folder containing enums
-- Switch to sessions instead of JWT
-- Add user permissions
 - Figure out plug in architecture
-- Create production build with optimizations
 - Look into webpack-blocks
 - a11y audit
 - l18n audit
 - security audit
+- Create production build with optimizations
 
 ## App Directory Structure
 
