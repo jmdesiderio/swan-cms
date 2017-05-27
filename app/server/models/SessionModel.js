@@ -12,7 +12,7 @@ export default class Session extends Model {
       id: { type: 'integer' },
       userId: { type: 'integer' },
       token: { type: 'string' },
-      disabled: { type: 'boolean' },
+      enabled: { type: 'boolean' },
       createdAt: { type: 'string', format: 'date-time' },
       updatedAt: { type: 'string', format: 'date-time' }
     }

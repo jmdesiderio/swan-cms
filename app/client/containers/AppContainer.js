@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import '../styles/style.scss'
-import s from './App.scss'
+import s from './AppContainer.scss'
 
-export default class App extends Component {
+class AppContainer extends Component {
   render () {
     return (
       <div className={s.root}>
@@ -18,6 +18,8 @@ export default class App extends Component {
   }
 }
 
-App.propTypes = {
+AppContainer.propTypes = {
   children: PropTypes.node
 }
+
+export default AppContainer

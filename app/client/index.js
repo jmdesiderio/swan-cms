@@ -11,15 +11,15 @@ import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux'
 import { ApolloProvider } from 'react-apollo'
 
-import client from './api'
-import routes from './routes'
+import apolloClient from './api'
 import rootReducer from './reducers'
+import routes from './routes'
 
 const history = createHistory()
 
 let middleware = applyMiddleware(
   thunk,
-  client.middleware(),
+  apolloClient.middleware(),
   routerMiddleware(history)
 )
 
@@ -29,7 +29,7 @@ const initialState = window.__INITIAL_STATE__ || {}
 const store = createStore(rootReducer, initialState, middleware)
 
 ReactDOM.render(
-  <ApolloProvider store={store} client={client}>
+  <ApolloProvider store={store} client={apolloClient}>
     {routes(history)}
   </ApolloProvider>,
   document.getElementById('root')

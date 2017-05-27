@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Icon } from '../elements/Icon/Icon'
 import s from './Sidebar.scss'
 
-export default class Sidebar extends Component {
+class Sidebar extends Component {
   constructor (props) {
     super(props)
 
@@ -62,3 +62,5 @@ export default class Sidebar extends Component {
 Sidebar.propTypes = {
   data: PropTypes.object
 }
+
+export default Sidebar

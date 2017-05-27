@@ -19,17 +19,14 @@ export function authMiddleware () {
         const isExpired = moment(session.updatedAt).add(4, 'hours').isBefore(moment())
         if (isExpired) throw new Error('Session expired')
 
-        if (session.disabled) throw new Error('Session disabled')
+        if (!session.enabled) throw new Error('Session disabled')
 
         req.user = session.user
 
         return session.$query()
           .patch({ updatedAt: moment().format() })
       })
-      .then((numRows) => {
-        if (numRows !== 1) throw new Error('Session time update failed')
-        next()
-      })
+      .then(() => { next() })
       .catch((err) => {
         console.error(err)
 

@@ -32,14 +32,14 @@ export function loginAuth (username, password, res) {
 
 export function logoutAuth (req, res) {
   const sessionToken = req.cookies[sessionTokenName]
-  if (!sessionToken) return
+  if (!sessionToken) return false
 
   const decryptedSessionToken = decrypt(sessionToken)
   res.clearCookie(sessionTokenName)
 
   return Session.query()
     .where('token', decryptedSessionToken)
-    .patch({ disabled: true })
+    .patch({ enabled: false })
     .then((numRows) => {
       if (numRows === 1) return true
     })

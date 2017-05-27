@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 
 import { isAuthorized } from '../auth'
@@ -14,7 +13,7 @@ import CategoriesView from '../views/CategoriesView/CategoriesView'
 import AssetsView from '../views/AssetsView/AssetsView'
 import SettingsView from '../views/SettingsView/SettingsView'
 
-export default class Config extends Component {
+class ConfigContainer extends Component {
   render () {
     if (!isAuthorized()) return <Redirect to='/admin/login' />
 
@@ -32,6 +31,4 @@ export default class Config extends Component {
   }
 }
 
-Config.propTypes = {
-  children: PropTypes.node
-}
+export default ConfigContainer

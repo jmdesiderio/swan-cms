@@ -5,7 +5,7 @@ import LoginForm from '../../forms/LoginForm'
 
 import s from './LoginView.scss'
 
-export default class LoginView extends Component {
+class LoginView extends Component {
   render () {
     return (
       <div className={s.root}>
@@ -16,3 +16,5 @@ export default class LoginView extends Component {
     )
   }
 }
+
+export default LoginView

@@ -10,8 +10,4 @@ export function isAuthorized () {
   return (Auth.isLoggedIn() && Auth.isAccessible())
 }
 
-export function logout () {
-  Cookies.remove(Auth.authTokenName)
-}
-
 export default Auth
