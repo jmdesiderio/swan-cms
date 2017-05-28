@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 import Color from 'color'
 import styled from 'styled-components'
 
-import { Icon } from '../elements/Icon/Icon'
+import Icon from '../elements/Icon/Icon'
 
 const Header = styled.header`
   background: ${p => p.theme.colors.oil};

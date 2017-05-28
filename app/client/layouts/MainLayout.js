@@ -16,21 +16,17 @@ const Main = styled.main`
   padding: 1.5rem;
 `
 
-class MainLayout extends Component {
-  renderLayout () {
-    return (
-      <Wrapper>
-        <Sidebar data={this.props.data} />
-        <Main>
-          {this.props.children}
-        </Main>
-      </Wrapper>
-    )
-  }
+const MainLayout = props => {
+  if (props.data.loading) return null
 
-  render () {
-    return this.props.data.loading ? null : this.renderLayout()
-  }
+  return (
+    <Wrapper>
+      <Sidebar data={props.data} />
+      <Main>
+        {props.children}
+      </Main>
+    </Wrapper>
+  )
 }
 
 MainLayout.propTypes = {

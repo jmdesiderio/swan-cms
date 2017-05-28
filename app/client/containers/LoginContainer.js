@@ -1,22 +1,45 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { isAuthorized } from '../auth'
 
-import LoginLayout from '../layouts/LoginLayout'
+import LoginForm from '../forms/LoginForm'
 
-import LoginView from '../views/LoginView/LoginView'
+const Wrapper = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+`
 
-class LoginContainer extends Component {
-  render () {
-    if (isAuthorized()) return <Redirect to='/admin/config' />
+const Container = styled.div`
+  max-width: 18rem;
+  width: 100%;
+`
 
-    return (
-      <LoginLayout>
-        <LoginView />
-      </LoginLayout>
-    )
-  }
+const Heading = styled.h1`
+  margin: 0 0 1.75rem;
+  text-align: center;
+`
+
+const Logo = styled.div`
+  margin: 2rem 0;
+  text-align: center;
+`
+
+const LoginContainer = () => {
+  if (isAuthorized()) return <Redirect to='/admin/config' />
+
+  return (
+    <Wrapper>
+      <Container>
+        <Heading>Site Name</Heading>
+        <LoginForm />
+        <Logo>Swan CMS</Logo>
+      </Container>
+    </Wrapper>
+  )
 }
 
 export default LoginContainer

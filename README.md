@@ -1,6 +1,7 @@
 # swan-cms
 
 ## Todo
+- Select react components to use - modal, virtualized list, etc
 - Integrate flow types
 - Convert to style-lint for styled-components
 - Immutable redux?

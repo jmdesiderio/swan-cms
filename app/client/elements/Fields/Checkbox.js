@@ -13,7 +13,7 @@ const Label = styled.label`
   font-size: .75rem;
 `
 
-export const Checkbox = ({ input, meta, ...custom }) => (
+const Checkbox = ({ input, meta, ...custom }) => (
   <FieldWrapper>
     <Label>
       <CheckboxElement {...input} {...custom} />
