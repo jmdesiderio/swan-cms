@@ -2,10 +2,10 @@ import { combineReducers } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
 import { reducer as form } from 'redux-form'
 
-import client from '../api'
+import api from '../api'
 
 export default combineReducers({
-  apollo: client.reducer(),
+  apollo: api.reducer(),
   form,
   router
 })

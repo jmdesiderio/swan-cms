@@ -12,7 +12,7 @@ import { routerMiddleware, ConnectedRouter } from 'react-router-redux'
 import { ApolloProvider } from 'react-apollo'
 import { ThemeProvider } from 'styled-components'
 
-import apolloClient from './api'
+import api from './api'
 import rootReducer from './reducers'
 
 import AppContainer from './containers/AppContainer'
@@ -24,13 +24,13 @@ import './styles/base'
 const initialState = window.__INITIAL_STATE__ || {}
 const history = createHistory()
 
-let middleware = applyMiddleware(thunk, apolloClient.middleware(), routerMiddleware(history))
+let middleware = applyMiddleware(thunk, api.middleware(), routerMiddleware(history))
 if (__DEV__) middleware = compose(middleware, window.devToolsExtension())
 
 const store = createStore(rootReducer, initialState, middleware)
 
 const Root = () => (
-  <ApolloProvider store={store} client={apolloClient}>
+  <ApolloProvider store={store} client={api}>
     <ThemeProvider theme={theme}>
       <ConnectedRouter history={history}>
         <AppContainer />

@@ -2,6 +2,8 @@
 
 ## Todo
 - Create animated switch for form
+- Create loading state
+- Add testing
 - Style forms for config pages and make overrides for login page style
 - Select react components to use - modal, virtualized list, etc
 - Write a breadcrumb component with app route tree
@@ -58,7 +60,7 @@
   },
   "db": {
     "client": "pg",
-    "host": "localhost",`
+    "host": "localhost",
     "database": "",
     "username": "",
     "password": ""

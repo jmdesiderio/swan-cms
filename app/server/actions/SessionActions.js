@@ -3,16 +3,15 @@ const bcrypt = require('bcryptjs')
 const Session = require('../models/SessionModel')
 const User = require('../models/UserModel')
 
-const sessionTokenName = 'sessionToken'
+const SESSION_TOKEN_NAME = 'sessionToken'
 const algorithm = 'aes-256-ctr'
 const secret = process.env.TOKEN_SECRET
 
 function loginAuth (username, password, res) {
   return User.query()
     .where('username', username)
-    .then(users => {
-      const user = users[0]
-
+    .first()
+    .then(user => {
       const isPasswordValid = bcrypt.compareSync(password, user.password)
       if (!isPasswordValid) throw new Error('Invalid Login')
 
@@ -20,7 +19,7 @@ function loginAuth (username, password, res) {
     })
     .then(session => {
       const encryptedSessionToken = encrypt(session.token)
-      res.cookie(sessionTokenName, encryptedSessionToken)
+      res.cookie(SESSION_TOKEN_NAME, encryptedSessionToken)
       return true
     })
     .catch(err => {
@@ -29,11 +28,11 @@ function loginAuth (username, password, res) {
 }
 
 function logoutAuth (req, res) {
-  const sessionToken = req.cookies[sessionTokenName]
+  const sessionToken = req.cookies[SESSION_TOKEN_NAME]
   if (!sessionToken) return false
 
   const decryptedSessionToken = decrypt(sessionToken)
-  res.clearCookie(sessionTokenName)
+  res.clearCookie(SESSION_TOKEN_NAME)
 
   return Session.query()
     .where('token', decryptedSessionToken)
@@ -63,7 +62,7 @@ function decrypt (value) {
 }
 
 module.exports = {
-  sessionTokenName,
+  SESSION_TOKEN_NAME,
   loginAuth,
   logoutAuth,
   encrypt,

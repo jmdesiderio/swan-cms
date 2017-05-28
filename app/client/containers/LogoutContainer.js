@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
-import { graphql } from 'react-apollo'
+import { graphql, withApollo } from 'react-apollo'
 import gql from 'graphql-tag'
 
 function LogoutContainer (props) {
   props.mutate().then(() => {
+    props.client.resetStore()
     props.history.push('/admin/login')
   })
 
@@ -24,4 +25,4 @@ const mutation = gql`
   }
 `
 
-export default compose(graphql(mutation), withRouter)(LogoutContainer)
+export default compose(graphql(mutation), withApollo, withRouter)(LogoutContainer)

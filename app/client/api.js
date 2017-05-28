@@ -1,10 +1,16 @@
-import ApolloClient, { createNetworkInterface } from 'apollo-client'
+import ApolloClient, { createBatchingNetworkInterface } from 'apollo-client'
 
-export default new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: '/graphql',
-    opts: {
-      credentials: 'same-origin'
-    }
-  })
+const batchingNetworkInterface = createBatchingNetworkInterface({
+  uri: '/graphql',
+  batchInterval: 10,
+  opts: {
+    credentials: 'same-origin'
+  }
 })
+
+const apolloClient = new ApolloClient({
+  networkInterface: batchingNetworkInterface,
+  queryDeduplication: true
+})
+
+export default apolloClient

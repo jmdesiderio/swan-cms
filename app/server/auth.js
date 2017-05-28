@@ -1,10 +1,10 @@
 const moment = require('moment')
-const { decrypt, logoutAuth, sessionTokenName } = require('./actions/SessionActions')
+const { decrypt, logoutAuth, SESSION_TOKEN_NAME } = require('./actions/SessionActions')
 const Session = require('./models/SessionModel')
 
 function authMiddleware () {
   return (req, res, next) => {
-    const sessionToken = req.cookies[sessionTokenName]
+    const sessionToken = req.cookies[SESSION_TOKEN_NAME]
 
     if (!sessionToken) {
       return next()
@@ -15,9 +15,8 @@ function authMiddleware () {
     Session.query()
       .where('token', decryptedSessionToken)
       .eager('user')
-      .then(sessions => {
-        const session = sessions[0]
-
+      .first()
+      .then(session => {
         const isExpired = moment(session.updatedAt).add(4, 'hours').isBefore(moment())
         if (isExpired) throw new Error('Session expired')
 
