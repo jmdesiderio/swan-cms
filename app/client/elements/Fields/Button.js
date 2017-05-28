@@ -12,6 +12,7 @@ const ButtonElement = styled.button`
   border-radius: .25rem;
   color: ${p => p.theme.colors.white};
   cursor: pointer;
+  max-width: 18rem;
   padding: .75rem .875rem;
   white-space: nowrap;
   width: 100%;

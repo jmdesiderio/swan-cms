@@ -68,7 +68,7 @@ export const margins = {
 }
 
 export const transitions = {
-  defaultDuration: '.25s',
+  defaultDuration: '.15s',
   defaultTiming: 'ease-in-out',
-  default: '.25s ease-in-out'
+  default: '.15s ease-in-out'
 }

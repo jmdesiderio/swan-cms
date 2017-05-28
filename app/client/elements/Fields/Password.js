@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Color from 'color'
 import styled from 'styled-components'
 
+import { FieldWrapper } from './'
+
 const InputElement = styled.input`
   border: 1px solid ${p => (p.hasError ? p.theme.colors.red : p.theme.colors.gainsboro)};
   border-radius: .25rem;
@@ -17,14 +19,18 @@ const InputElement = styled.input`
   }
 `
 
-const Switch = ({ input, meta: { touched, error }, id, ...custom }) => (
-  <div>
-    {custom.label}
-    <InputElement id={id || input.name} type='checkbox' {...input} {...custom} />
-  </div>
-)
+const Password = ({ input, meta, id, label, ...custom }) => {
+  const { touched, error } = meta
+  const { name } = input
 
-Switch.propTypes = {
+  return (
+    <FieldWrapper error={touched && error} label={label} htmlFor={id || name}>
+      <InputElement hasError={touched && error} id={id || name} type='password' {...input} {...custom} />
+    </FieldWrapper>
+  )
+}
+
+Password.propTypes = {
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string,
@@ -34,4 +40,4 @@ Switch.propTypes = {
   placeholder: PropTypes.string
 }
 
-export default Switch
+export default Password

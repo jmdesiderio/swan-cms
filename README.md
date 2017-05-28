@@ -1,8 +1,13 @@
 # swan-cms
 
 ## Todo
+- Create animated switch for form
+- Style forms for config pages and make overrides for login page style
 - Select react components to use - modal, virtualized list, etc
+- Write a breadcrumb component with app route tree
+- Add router paths constants file to enable using named routes
 - Integrate flow types
+- Improve chrome debugger experience
 - Convert to style-lint for styled-components
 - Immutable redux?
 - Pick icons theme pack
@@ -10,7 +15,6 @@
 - Add shared folder containing enums
 - Add user permissions
 - Add a node logger
-- Add router paths constants file to enable using named routes
 - Create data flow chart
 - Audit packages and remove or utilize
 - Dev server with auto refresh

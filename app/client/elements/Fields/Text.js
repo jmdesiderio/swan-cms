@@ -19,25 +19,25 @@ const InputElement = styled.input`
   }
 `
 
-const Input = ({ input, meta: { touched, error }, ...custom }) => (
-  <FieldWrapper error={touched && error} label={custom.label} htmlFor={custom.id}>
-    <InputElement hasError={touched && error} {...input} {...custom} />
-  </FieldWrapper>
-)
+const Text = ({ input, meta, id, label, ...custom }) => {
+  const { touched, error } = meta
+  const { name } = input
 
-Input.propTypes = {
+  return (
+    <FieldWrapper error={touched && error} label={label} htmlFor={id || name}>
+      <InputElement hasError={touched && error} id={id || name} type='text' {...input} {...custom} />
+    </FieldWrapper>
+  )
+}
+
+Text.propTypes = {
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.string,
   input: PropTypes.object,
   label: PropTypes.string,
   meta: PropTypes.object,
-  placeholder: PropTypes.string,
-  type: PropTypes.string
+  placeholder: PropTypes.string
 }
 
-Input.defaultProps = {
-  type: 'text'
-}
-
-export default Input
+export default Text

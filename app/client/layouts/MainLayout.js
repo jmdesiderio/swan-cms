@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { graphql } from 'react-apollo'
@@ -9,11 +9,13 @@ import Sidebar from '../components/Sidebar'
 
 const Wrapper = styled.div`
   display: flex;
-  min-height: 100%
+  min-height: 100%;
+  min-width: 100%;
 `
 
 const Main = styled.main`
   padding: 1.5rem;
+  width: 100%;
 `
 
 const MainLayout = props => {

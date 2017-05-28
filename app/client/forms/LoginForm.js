@@ -7,7 +7,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 
-import { Checkbox, Button, Input } from '../elements/Fields'
+import { Button, Checkbox, Password, Text } from '../elements/Fields'
 import { Errors } from '../elements/Errors/Errors'
 
 const Row = styled.div`
@@ -55,11 +55,11 @@ class LoginForm extends Component {
   renderLoginFormBottom () {
     return (
       <div>
-        <Field component={Input} label='Password' id='password' name='password' type='password' />
+        <Field component={Password} label='Password' name='password' />
         <Row>
           <Field component={Checkbox} label='Keep me logged in' name='keepLoggedIn' />
           <Link onClick={this.resetPasswordLinkHandler}>
-            {'Forget your password?'}
+            Forget your password?
           </Link>
         </Row>
       </div>
@@ -68,16 +68,15 @@ class LoginForm extends Component {
 
   render () {
     const { handleSubmit, invalid, pristine, submitting } = this.props
-    const { errors } = this.state
-    const { isResetPasswordForm } = this.state
-    const label = isResetPasswordForm ? 'Reset Password' : 'Login'
+    const { errors, isResetPasswordForm } = this.state
+    const buttonText = isResetPasswordForm ? 'Reset Password' : 'Login'
 
     return (
       <form onSubmit={handleSubmit(this.submitHandler)}>
         {errors.length ? <Errors list={errors} /> : null}
-        <Field component={Input} label='Username or Email' id='username' name='username' />
+        <Field component={Text} label='Username or Email' name='username' />
         {isResetPasswordForm ? null : this.renderLoginFormBottom()}
-        <Button disabled={invalid || pristine || submitting} text={label} />
+        <Button disabled={invalid || pristine || submitting} text={buttonText} />
       </form>
     )
   }
