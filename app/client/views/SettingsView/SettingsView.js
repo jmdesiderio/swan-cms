@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 
 class SettingsView extends Component {
   render () {
-    return (
-      <h1>Settings View</h1>
-    )
+    return <h1>Settings View</h1>
   }
 }
 

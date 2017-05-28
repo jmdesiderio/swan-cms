@@ -40,27 +40,24 @@ class LoginForm extends Component {
   }
 
   submitHandler (input) {
-    return this.props.mutate({
-      variables: input
-    }).then(({ data }) => {
-      this.props.history.push('/admin/config')
-    }).catch(err => {
-      this.setState({ errors: [err.message] })
-    })
+    return this.props
+      .mutate({
+        variables: input
+      })
+      .then(({ data }) => {
+        this.props.history.push('/admin/config')
+      })
+      .catch(err => {
+        this.setState({ errors: [err.message] })
+      })
   }
 
   renderLoginFormBottom () {
     return (
       <div>
-        <Field component={Input}
-          label='Password'
-          id='password'
-          name='password'
-          type='password' />
+        <Field component={Input} label='Password' id='password' name='password' type='password' />
         <Row>
-          <Field component={Checkbox}
-            label='Keep me logged in'
-            name='keepLoggedIn' />
+          <Field component={Checkbox} label='Keep me logged in' name='keepLoggedIn' />
           <Link onClick={this.resetPasswordLinkHandler}>
             {'Forget your password?'}
           </Link>
@@ -73,18 +70,14 @@ class LoginForm extends Component {
     const { handleSubmit, invalid, pristine, submitting } = this.props
     const { errors } = this.state
     const { isResetPasswordForm } = this.state
-    const label = (isResetPasswordForm) ? 'Reset Password' : 'Login'
+    const label = isResetPasswordForm ? 'Reset Password' : 'Login'
 
     return (
       <form onSubmit={handleSubmit(this.submitHandler)}>
-        {(errors.length) ? <Errors list={errors} /> : null}
-        <Field component={Input}
-          label='Username or Email'
-          id='username'
-          name='username' />
-        {(isResetPasswordForm) ? null : this.renderLoginFormBottom()}
-        <Button disabled={invalid || pristine || submitting}
-          text={label} />
+        {errors.length ? <Errors list={errors} /> : null}
+        <Field component={Input} label='Username or Email' id='username' name='username' />
+        {isResetPasswordForm ? null : this.renderLoginFormBottom()}
+        <Button disabled={invalid || pristine || submitting} text={label} />
       </form>
     )
   }
@@ -121,8 +114,4 @@ const mutation = gql`
   }
 `
 
-export default compose(
-  graphql(mutation),
-  reduxForm({ form: 'LoginForm', validate }),
-  withRouter
-)(LoginForm)
+export default compose(graphql(mutation), reduxForm({ form: 'LoginForm', validate }), withRouter)(LoginForm)

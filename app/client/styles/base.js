@@ -1,7 +1,5 @@
 import { injectGlobal } from 'styled-components'
-import theme from './theme'
-
-const { base, colors } = theme
+import { base, colors } from './theme'
 
 injectGlobal`
   html,

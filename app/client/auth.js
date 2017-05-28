@@ -7,7 +7,7 @@ const Auth = {
 }
 
 export function isAuthorized () {
-  return (Auth.isLoggedIn() && Auth.isAccessible())
+  return Auth.isLoggedIn() && Auth.isAccessible()
 }
 
 export default Auth

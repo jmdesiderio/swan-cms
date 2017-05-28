@@ -1,7 +1,5 @@
 import React from 'react'
 
-export const Radio = () => (
-  <input type='radio' />
-)
+export const Radio = () => <input type='radio' />
 
 export default Radio

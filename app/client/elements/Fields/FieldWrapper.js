@@ -20,9 +20,9 @@ const Error = styled.div`
 const FieldWrapper = ({ children, error, label, htmlFor }) => {
   return (
     <Wrapper>
-      {(label) ? <Label htmlFor={htmlFor}>{label}:</Label> : null}
+      {label ? <Label htmlFor={htmlFor}>{label}:</Label> : null}
       {children}
-      {(error) ? <Error>{error}</Error> : null}
+      {error ? <Error>{error}</Error> : null}
     </Wrapper>
   )
 }

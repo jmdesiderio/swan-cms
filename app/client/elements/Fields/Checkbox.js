@@ -16,9 +16,7 @@ const Label = styled.label`
 export const Checkbox = ({ input, meta, ...custom }) => (
   <FieldWrapper>
     <Label>
-      <CheckboxElement
-        {...input}
-        {...custom} />
+      <CheckboxElement {...input} {...custom} />
       {custom.label}
     </Label>
   </FieldWrapper>

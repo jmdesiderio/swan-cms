@@ -2,7 +2,9 @@ const { Model } = require('objection')
 const User = require('./UserModel')
 
 class Session extends Model {
-  static get tableName () { return 'sessions' }
+  static get tableName () {
+    return 'sessions'
+  }
 
   static get jsonSchema () {
     return {

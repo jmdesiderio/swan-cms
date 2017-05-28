@@ -21,12 +21,7 @@ import './styles/base'
 
 const history = createHistory()
 
-let middleware = applyMiddleware(
-  thunk,
-  apolloClient.middleware(),
-  routerMiddleware(history)
-)
-
+let middleware = applyMiddleware(thunk, apolloClient.middleware(), routerMiddleware(history))
 if (__DEV__) middleware = compose(middleware, window.devToolsExtension())
 
 const initialState = window.__INITIAL_STATE__ || {}

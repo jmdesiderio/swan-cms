@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   blueGray: '#1b2d38',
   blue: '#0d78f2',
   green: '#69a740',
@@ -33,11 +33,11 @@ const colors = {
   transparent: 'rgba(255, 255, 255, 0)'
 }
 
-const font = {
+export const font = {
   family: '"Helvetica Neue", sans-serif'
 }
 
-const base = {
+export const base = {
   backgroundColor: colors.silver,
   fontFamily: font.family,
   fontSize: '16px',
@@ -46,7 +46,7 @@ const base = {
   textColor: colors.jet
 }
 
-const breakpoints = {
+export const breakpoints = {
   bigDesktopWidthMin: '1800px',
   desktopWidthMin: '1200px',
   tabletWidthMax: '1199px',
@@ -54,7 +54,7 @@ const breakpoints = {
   mobileWidthMax: '599px'
 }
 
-const mediaQueries = {
+export const mediaQueries = {
   mobile: `only screen and (max-width: ${breakpoints.mobileWidthMax})`,
   tabletUp: `only screen and (min-width: ${breakpoints.tabletWidthMin})`,
   tablet: `only screen and (min-width: ${breakpoints.tabletWidthMin}) and (max-width: ${breakpoints.tabletWidthMax})`,
@@ -62,23 +62,13 @@ const mediaQueries = {
   desktopUp: `only screen and (min-width: ${breakpoints.desktopWidthMin})`
 }
 
-const margins = {
+export const margins = {
   smallWrap: '12px',
   bigWrap: '24px'
 }
 
-const transitions = {
+export const transitions = {
   defaultDuration: '.25s',
   defaultTiming: 'ease-in-out',
   default: '.25s ease-in-out'
-}
-
-export default {
-  base,
-  breakpoints,
-  colors,
-  font,
-  margins,
-  mediaQueries,
-  transitions
 }

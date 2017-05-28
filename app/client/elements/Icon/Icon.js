@@ -21,10 +21,7 @@ const renderIcon = {
 }
 
 export const Icon = ({ className, type, ...props }) => (
-  <Svg className={className}
-    viewBox='0 0 490 490'
-    preserveAspectRatio='xMidYMid meet'
-    {...props}>
+  <Svg className={className} viewBox='0 0 490 490' preserveAspectRatio='xMidYMid meet' {...props}>
     {renderIcon[type]()}
   </Svg>
 )

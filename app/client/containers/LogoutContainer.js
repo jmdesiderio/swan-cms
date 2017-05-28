@@ -5,10 +5,9 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 function LogoutContainer (props) {
-  props.mutate()
-    .then(() => {
-      props.history.push('/admin/login')
-    })
+  props.mutate().then(() => {
+    props.history.push('/admin/login')
+  })
 
   return null
 }
@@ -24,7 +23,4 @@ const mutation = gql`
   }
 `
 
-export default compose(
-  graphql(mutation),
-  withRouter
-)(LogoutContainer)
+export default compose(graphql(mutation), withRouter)(LogoutContainer)

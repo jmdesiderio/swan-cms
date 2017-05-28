@@ -9,7 +9,7 @@ import LogoutContainer from './containers/LogoutContainer'
 
 import NoMatchView from './views/NoMatchView/NoMatchView'
 
-export default (history) => (
+export default history => (
   <ConnectedRouter history={history}>
     <AppContainer>
       <Switch>

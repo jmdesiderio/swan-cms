@@ -17,8 +17,8 @@ const Main = styled.main`
 `
 
 class MainLayout extends Component {
-  render () {
-    return (this.props.data.loading) ? null : (
+  renderLayout () {
+    return (
       <Wrapper>
         <Sidebar data={this.props.data} />
         <Main>
@@ -26,6 +26,10 @@ class MainLayout extends Component {
         </Main>
       </Wrapper>
     )
+  }
+
+  render () {
+    return this.props.data.loading ? null : this.renderLayout()
   }
 }
 
@@ -42,6 +46,4 @@ const query = gql`
   }
 `
 
-export default compose(
-  graphql(query)
-)(MainLayout)
+export default compose(graphql(query))(MainLayout)

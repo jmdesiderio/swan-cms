@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { FieldWrapper } from './'
 
 const InputElement = styled.input`
-  border: 1px solid ${p => (p.hasError) ? p.theme.colors.red : p.theme.colors.gainsboro};
+  border: 1px solid ${p => (p.hasError ? p.theme.colors.red : p.theme.colors.gainsboro)};
   border-radius: .25rem;
   margin: .25rem 0;
   padding: .75rem .875rem;
@@ -20,12 +20,8 @@ const InputElement = styled.input`
 `
 
 const Input = ({ input, meta: { touched, error }, ...custom }) => (
-  <FieldWrapper error={touched && error}
-    label={custom.label}
-    htmlFor={custom.id}>
-    <InputElement hasError={(touched && error)}
-      {...input}
-      {...custom} />
+  <FieldWrapper error={touched && error} label={custom.label} htmlFor={custom.id}>
+    <InputElement hasError={touched && error} {...input} {...custom} />
   </FieldWrapper>
 )
 

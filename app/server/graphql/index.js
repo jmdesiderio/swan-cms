@@ -6,27 +6,18 @@ const { schema: MutationSchema, resolvers: MutationResolvers } = require('./muta
 const { schema: ObjectSchema, resolvers: ObjectResolvers } = require('./objects')
 const { schema: InputSchema, resolvers: InputResolvers } = require('./inputs')
 
-const schema = [`
+const schema = [
+  `
   schema {
     query: Query
     mutation: Mutation
   }
-`]
+`
+]
 
 const executableSchema = makeExecutableSchema({
-  typeDefs: [
-    ...schema,
-    ...QuerySchema,
-    ...MutationSchema,
-    ...ObjectSchema,
-    ...InputSchema
-  ],
-  resolvers: merge(
-    QueryResolvers,
-    MutationResolvers,
-    ObjectResolvers,
-    InputResolvers
-  )
+  typeDefs: [...schema, ...QuerySchema, ...MutationSchema, ...ObjectSchema, ...InputSchema],
+  resolvers: merge(QueryResolvers, MutationResolvers, ObjectResolvers, InputResolvers)
 })
 
 module.exports = executableSchema
