@@ -1,4 +1,3 @@
-// @flow
 import { injectGlobal } from 'styled-components'
 import theme from './theme'
 

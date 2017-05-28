@@ -1,7 +1,5 @@
-// @flow
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 console.log('webpack nodeenv', process.env.NODE_ENV)
 
@@ -30,7 +28,6 @@ module.exports = {
     new webpack.DefinePlugin({
       __DEV__: process.env.NODE_ENV === 'development',
       __PROD__: process.env.NODE_ENV === 'production'
-    }),
-    new ExtractTextPlugin('style.min.css')
+    })
   ]
 }

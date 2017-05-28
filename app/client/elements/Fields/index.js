@@ -1,4 +1,3 @@
-// @flow
 
 export FieldWrapper from './FieldWrapper'
 

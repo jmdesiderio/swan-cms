@@ -1,4 +1,3 @@
-// @flow
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'

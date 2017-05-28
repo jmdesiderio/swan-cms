@@ -1,9 +1,10 @@
 # swan-cms
 
 ## Todo
-- Switch to styled-components using themeing
+- Integrate flow types
 - Convert to style-lint for styled-components
-- Pick icons solution
+- Immutable redux?
+- Pick icons theme pack
 - Update graphql and figure out schema error
 - Add shared folder containing enums
 - Add user permissions
@@ -52,7 +53,7 @@
   },
   "db": {
     "client": "pg",
-    "host": "localhost",
+    "host": "localhost",`
     "database": "",
     "username": "",
     "password": ""
