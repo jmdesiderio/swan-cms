@@ -1,6 +1,12 @@
 # swan-cms
 
 ## Todo
+- Components
+  - Alert
+  - Flash Message
+  - Confirmation
+  - Modal
+  - Dialog
 - Create animated switch for form
 - Create loading state
 - Add testing

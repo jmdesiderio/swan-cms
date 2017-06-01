@@ -10,7 +10,7 @@ import EntriesView from '../views/EntriesViews/EntriesView'
 import GlobalsView from '../views/GlobalsViews/GlobalsView'
 import CategoriesView from '../views/CategoriesViews/CategoriesView'
 import AssetsView from '../views/AssetsViews/AssetsView'
-import SettingsViews from '../views/SettingsViews'
+import * as SettingsViews from '../views/SettingsViews'
 import NoMatchView from '../views/NoMatchView'
 
 const ConfigContainer = () => {
@@ -30,13 +30,13 @@ const ConfigContainer = () => {
         <Route exact path='/admin/config/assets' component={AssetsView} />
 
         <Route exact path='/admin/config/settings' component={SettingsViews.Index} />
-        <Route exact path='/admin/config/settings/general' component={SettingsViews.General} />
+        <Route exact path='/admin/config/settings/general' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/sites' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/routes' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/users' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/email' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/plugins' component={SettingsViews.Index} />
-        <Route exact path='/admin/config/settings/fields' component={SettingsViews.Index} />
+        <Route exact path='/admin/config/settings/fields' component={SettingsViews.Fields} />
         <Route exact path='/admin/config/settings/sections' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/assets' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/globals' component={SettingsViews.Index} />

@@ -5,7 +5,9 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 
-import Sidebar from '../components/Sidebar'
+import MainSidebar from './components/MainSidebar'
+import Breadcrumbs from './components/Breadcrumbs'
+import MainFooter from './components/MainFooter'
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const Wrapper = styled.div`
 `
 
 const Main = styled.main`
-  padding: 1.5rem;
+  padding-left: ${p => p.theme.sizes.mainSidebarWidth};
   width: 100%;
 `
 
@@ -23,9 +25,11 @@ const MainLayout = props => {
 
   return (
     <Wrapper>
-      <Sidebar data={props.data} />
+      <MainSidebar data={props.data} />
       <Main>
+        <Breadcrumbs />
         {props.children}
+        <MainFooter />
       </Main>
     </Wrapper>
   )

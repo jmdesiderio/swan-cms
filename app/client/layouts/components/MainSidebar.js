@@ -4,14 +4,19 @@ import { Link, NavLink } from 'react-router-dom'
 import Color from 'color'
 import styled from 'styled-components'
 
-import Icon from '../elements/Icon/Icon'
+import Icon from '../../elements/Icon/Icon'
 
 const Header = styled.header`
   background: ${p => p.theme.colors.oil};
+  bottom: 0;
   color: ${p => p.theme.colors.gainsboro};
   display: flex;
   flex-direction: column;
-  width: 13.75rem;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  width: ${p => p.theme.sizes.mainSidebarWidth};
 `
 
 const Top = styled.div`

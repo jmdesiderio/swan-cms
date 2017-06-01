@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import PageHeader from '../../components/PageHeader'
 
 class EntriesView extends Component {
   render () {
-    return <h1>Entries View</h1>
+    return (
+      <div>
+        <PageHeader title='Entries View' />
+      </div>
+    )
   }
 }
 

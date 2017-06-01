@@ -72,3 +72,7 @@ export const transitions = {
   defaultTiming: 'ease-in-out',
   default: '.15s ease-in-out'
 }
+
+export const sizes = {
+  mainSidebarWidth: '13.75rem'
+}

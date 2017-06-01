@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import PageHeader from '../../components/PageHeader'
 
 class GlobalsView extends Component {
   render () {
-    return <h1>Globals View</h1>
+    return (
+      <div>
+        <PageHeader title='Globals View' />
+      </div>
+    )
   }
 }
 

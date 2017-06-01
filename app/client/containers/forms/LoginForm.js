@@ -7,8 +7,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 
-import { Button, Checkbox, Password, Text } from '../elements/Fields'
-import { Errors } from '../elements/Errors/Errors'
+import { Button, Checkbox, Password, Text } from '../../elements/Fields'
+import { Errors } from '../../elements/Errors/Errors'
 
 const Row = styled.div`
   align-items: center;
@@ -18,6 +18,10 @@ const Row = styled.div`
 
 const Link = styled.a`
   font-size: .75rem;
+`
+
+const FullWidthButton = styled(Button)`
+  width: 100%;
 `
 
 class LoginForm extends Component {
@@ -76,7 +80,9 @@ class LoginForm extends Component {
         {errors.length ? <Errors list={errors} /> : null}
         <Field component={Text} label='Username or Email' name='username' />
         {isResetPasswordForm ? null : this.renderLoginFormBottom()}
-        <Button disabled={invalid || pristine || submitting} text={buttonText} />
+        <FullWidthButton disabled={invalid || pristine || submitting}>
+          {buttonText}
+        </FullWidthButton>
       </form>
     )
   }

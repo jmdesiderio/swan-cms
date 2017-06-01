@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+import PageHeader from '../../components/PageHeader'
+import PageBodyWrapper from '../../components/PageBodyWrapper'
+
 const Section = styled.section`
-  background: ${p => p.theme.colors.white};
   margin: 1rem 0;
   padding: 1.5rem 2rem;
   width: 100%;
@@ -40,60 +42,62 @@ const SettingsLink = styled(Link)`
   }
 `
 
-class SettingsIndex extends Component {
+class SettingsIndexView extends Component {
   render () {
     return (
       <div>
-        <h1>Settings</h1>
-        <Section>
-          <SubHeading>System</SubHeading>
-          <List>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/general'>General</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/sites'>Sites</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/routes'>Routes</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/users'>Users</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/email'>Email</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/plugins'>Plugins</SettingsLink>
-            </ListItem>
-          </List>
-        </Section>
-        <Section>
-          <SubHeading>Content</SubHeading>
-          <List>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/fields'>Fields</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/sections'>Sections</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/assets'>Assets</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/globals'>Globals</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/categories'>Categories</SettingsLink>
-            </ListItem>
-            <ListItem>
-              <SettingsLink to='/admin/config/settings/tags'>Tags</SettingsLink>
-            </ListItem>
-          </List>
-        </Section>
+        <PageHeader title='Settings' />
+        <PageBodyWrapper>
+          <Section>
+            <SubHeading>System</SubHeading>
+            <List>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/general'>General</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/sites'>Sites</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/routes'>Routes</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/users'>Users</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/email'>Email</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/plugins'>Plugins</SettingsLink>
+              </ListItem>
+            </List>
+          </Section>
+          <Section>
+            <SubHeading>Content</SubHeading>
+            <List>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/fields'>Fields</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/sections'>Sections</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/assets'>Assets</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/globals'>Globals</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/categories'>Categories</SettingsLink>
+              </ListItem>
+              <ListItem>
+                <SettingsLink to='/admin/config/settings/tags'>Tags</SettingsLink>
+              </ListItem>
+            </List>
+          </Section>
+        </PageBodyWrapper>
       </div>
     )
   }
 }
 
-export default SettingsIndex
+export default SettingsIndexView

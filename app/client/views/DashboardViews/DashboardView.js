@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import PageHeader from '../../components/PageHeader'
 
 class DashboardView extends Component {
   render () {
-    return <h1>Dashboard View</h1>
+    return (
+      <div>
+        <PageHeader title='Dashboard View' />
+      </div>
+    )
   }
 }
 

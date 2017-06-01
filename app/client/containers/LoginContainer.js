@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { isAuthorized } from '../auth'
 
-import LoginForm from '../forms/LoginForm'
+import LoginForm from './forms/LoginForm'
 
 const Wrapper = styled.div`
   align-items: center;

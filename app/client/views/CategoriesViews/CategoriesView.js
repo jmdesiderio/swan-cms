@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import PageHeader from '../../components/PageHeader'
 
 class CategoriesView extends Component {
   render () {
-    return <h1>Categories View</h1>
+    return (
+      <div>
+        <PageHeader title='Categories View' />
+      </div>
+    )
   }
 }
 
