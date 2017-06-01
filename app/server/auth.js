@@ -14,20 +14,17 @@ function authMiddleware () {
 
     Session.query()
       .where('token', decryptedSessionToken)
-      .eager('user')
+      .andWhere('enabled', true)
+      .throwIfNotFound()
       .first()
+      .eager('user')
       .then(session => {
         const isExpired = moment(session.updatedAt).add(4, 'hours').isBefore(moment())
         if (isExpired) throw new Error('Session expired')
 
-        if (!session.enabled) throw new Error('Session disabled')
-
         req.user = session.user
 
-        return session.$query().patch({ updatedAt: moment().format() })
-      })
-      .then(() => {
-        next()
+        return session.$query().patch({ updatedAt: moment().format() }).then(() => next())
       })
       .catch(err => {
         console.error(err)
