@@ -43,10 +43,10 @@
 - `CREATE EXTENSION IF NOT EXISTS "pgcrypto";`
 
 ### Migrations
-- `yarn run knex:migrate`
+- `npm run knex:migrate`
 
 ### Rollbacks
-- `yarn run knex:rollback`
+- `npm run knex:rollback`
 
 ## .env
 ### Template
