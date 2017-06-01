@@ -7,6 +7,7 @@
   - Confirmation
   - Modal
   - Dialog
+- Add reselect
 - Create animated switch for form
 - Create loading state
 - Add testing
