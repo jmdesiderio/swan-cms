@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from './Button'
 
-const ButtonWithLink = Button.withComponent(Link)
+const LinkFromButton = Button.withComponent(Link)
 
-const ButtonLink = styled(ButtonWithLink)`
+const ButtonLink = styled(LinkFromButton)`
   &:hover {
     border: 0;
   }
