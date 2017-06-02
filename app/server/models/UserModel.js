@@ -1,6 +1,6 @@
-const { Model } = require('objection')
+const Base = require('./BaseModel')
 
-class User extends Model {
+class User extends Base {
   static get tableName () {
     return 'users'
   }
@@ -24,6 +24,15 @@ class User extends Model {
   }
 
   $beforeInsert () {
+    this.trimFields()
+  }
+
+  $beforeUpdate () {
+    this.timeFields()
+    super.$beforeUpdate()
+  }
+
+  trimFields () {
     this.username = this.username.trim()
     if (this.firstName) this.firstName = this.firstName.trim()
     if (this.lastName) this.lastName = this.lastName.trim()

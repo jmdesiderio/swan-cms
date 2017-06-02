@@ -1,6 +1,8 @@
 export FieldWrapper from './FieldWrapper'
 
 export Button from './Button'
+export ButtonLink from './ButtonLink'
+export ButtonSecondary from './ButtonSecondary'
 export Checkbox from './Checkbox'
 export FileUpload from './FileUpload'
 export Password from './Password'

@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import ButtonLink from '../elements/Fields/ButtonLink'
+import { ButtonLink } from '../elements/Fields'
 
 const Wrapper = styled.div`
+  align-items: center;
   border-bottom: 1px solid ${p => p.theme.colors.gainsboro};
   display: flex;
   justify-content: space-between;

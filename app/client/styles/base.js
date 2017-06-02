@@ -1,5 +1,6 @@
+import Color from 'color'
 import { injectGlobal } from 'styled-components'
-import { base, colors } from './theme'
+import { base, colors, transitions } from './theme'
 
 injectGlobal`
   html,
@@ -39,14 +40,9 @@ injectGlobal`
   }
 
   a {
-    border-bottom: 1px solid ${colors.transparent};
     color: ${colors.blue};
     cursor: pointer;
     text-decoration: none;
-
-    &:hover {
-      border-bottom: 1px solid ${colors.blue};
-    }
 
     .touch & { // .touch a
       -webkit-tap-highlight-color: ${colors.transparent};

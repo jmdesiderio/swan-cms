@@ -40,7 +40,7 @@ export const font = {
 export const base = {
   backgroundColor: colors.silver,
   fontFamily: font.family,
-  fontSize: '16px',
+  fontSize: '14px',
   fontWeight: 400,
   lineHeight: 1.3,
   textColor: colors.jet
@@ -74,5 +74,5 @@ export const transitions = {
 }
 
 export const sizes = {
-  mainSidebarWidth: '13.75rem'
+  sidebarWidth: '13.75rem'
 }

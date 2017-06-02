@@ -4,10 +4,6 @@ import Button from './Button'
 
 const LinkFromButton = Button.withComponent(Link)
 
-const ButtonLink = styled(LinkFromButton)`
-  &:hover {
-    border: 0;
-  }
-`
+const ButtonLink = styled(LinkFromButton)``
 
 export default ButtonLink

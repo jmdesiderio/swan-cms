@@ -7,9 +7,10 @@
   - Confirmation
   - Modal
   - Dialog
+  - CSS transitions
 - Create animated switch for form
 - Create loading state
-- Add testing
+- Add unit tests
 - Style forms for config pages and make overrides for login page style
 - Select react components to use - modal, virtualized list, etc
 - Write a breadcrumb component with app route tree

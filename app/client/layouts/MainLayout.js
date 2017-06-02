@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 `
 
 const Main = styled.main`
-  padding-left: ${p => p.theme.sizes.mainSidebarWidth};
+  padding-left: ${p => p.theme.sizes.sidebarWidth};
   width: 100%;
 `
 

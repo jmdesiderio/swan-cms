@@ -16,7 +16,7 @@ const Header = styled.header`
   overflow: auto;
   position: fixed;
   top: 0;
-  width: ${p => p.theme.sizes.mainSidebarWidth};
+  width: ${p => p.theme.sizes.sidebarWidth};
 `
 
 const Top = styled.div`

@@ -24,7 +24,7 @@ function authMiddleware () {
 
         req.user = session.user
 
-        return session.$query().patch({ updatedAt: moment().format() }).then(() => next())
+        return session.$query().patch().then(() => next())
       })
       .catch(err => {
         console.error(err)

@@ -1,7 +1,8 @@
 const { Model } = require('objection')
+const Base = require('./BaseModel')
 const User = require('./UserModel')
 
-class Session extends Model {
+class Session extends Base {
   static get tableName () {
     return 'sessions'
   }

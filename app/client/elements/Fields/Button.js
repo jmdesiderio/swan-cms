@@ -12,7 +12,7 @@ const Button = styled.button`
   cursor: pointer;
   font-size: .875rem;
   max-width: 18rem;
-  padding: .75rem .875rem;
+  padding: .625rem .875rem;
   white-space: nowrap;
 
   &:hover {

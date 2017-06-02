@@ -36,7 +36,9 @@ const ConfigContainer = () => {
         <Route exact path='/admin/config/settings/users' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/email' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/plugins' component={SettingsViews.Index} />
-        <Route exact path='/admin/config/settings/fields' component={SettingsViews.Fields} />
+        <Route exact path='/admin/config/settings/fields/edit/:id' component={SettingsViews.FieldsForm} />
+        <Route exact path='/admin/config/settings/fields/new' component={SettingsViews.FieldsForm} />
+        <Route exact path='/admin/config/settings/fields/:id?' component={SettingsViews.Fields} />
         <Route exact path='/admin/config/settings/sections' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/assets' component={SettingsViews.Index} />
         <Route exact path='/admin/config/settings/globals' component={SettingsViews.Index} />
