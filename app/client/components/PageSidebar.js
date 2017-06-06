@@ -51,12 +51,12 @@ const ButtonsWrapper = styled.div`
 `
 
 const PageSidebar = ({ items, selectedId, buttonText, buttonAction, selectedMenu }) => {
-  const ListItems = items.map(({ text, linkUrl, id }) => {
+  const ListItems = items.map(({ name, linkUrl, id }) => {
     const isSelected = id === selectedId
     const ListItem = isSelected ? SelectedItem : Item
     const ListItemLink = isSelected ? SelectedItemLink : ItemLink
 
-    return <ListItem key={id}><ListItemLink to={linkUrl}>{text}</ListItemLink></ListItem>
+    return <ListItem key={id}><ListItemLink to={linkUrl}>{name}</ListItemLink></ListItem>
   })
 
   return (
@@ -75,7 +75,7 @@ const PageSidebar = ({ items, selectedId, buttonText, buttonAction, selectedMenu
 PageSidebar.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string,
+      name: PropTypes.string,
       linkUrl: PropTypes.string,
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     })
@@ -83,7 +83,7 @@ PageSidebar.propTypes = {
   selectedId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   selectedMenu: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string,
+      name: PropTypes.string,
       action: PropTypes.func
     })
   ),

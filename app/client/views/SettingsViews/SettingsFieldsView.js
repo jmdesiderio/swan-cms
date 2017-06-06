@@ -1,43 +1,53 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+
 import PageHeader from '../../components/PageHeader'
 import PageBodyWrapper from '../../components/PageBodyWrapper'
 import PageSidebar from '../../components/PageSidebar'
 import PageFooter from '../../components/PageFooter'
 
 class SettingsFieldsView extends Component {
+  getFieldGroupItems () {
+    const { getFieldGroups } = this.props.data
+
+    return getFieldGroups.map(({ id, name }) => ({
+      id,
+      name,
+      linkUrl: '/admin/config/settings/fields/' + id
+    }))
+  }
+
   renderSidebar () {
     const { match } = this.props
 
     const items = [
       {
-        text: 'All Fields',
+        name: 'All Fields',
         linkUrl: '/admin/config/settings/fields',
         id: 'ALL'
       },
-      {
-        text: 'Test',
-        linkUrl: '/admin/config/settings/fields/1',
-        id: 1
-      }
+      ...this.getFieldGroupItems()
     ]
 
     const selectedMenu = !match.params.id
       ? null
       : [
         {
-          text: 'Rename selected group',
+          name: 'Rename selected group',
           action: () => {}
         },
         {
-          text: 'Delete selected group',
+          name: 'Delete selected group',
           action: () => {}
         }
       ]
 
     const props = {
       items,
-      selectedId: parseInt(match.params.id, 10) || 'ALL',
+      selectedId: match.params.id || 'ALL',
       selectedMenu: selectedMenu,
       buttonText: 'New Group',
       buttonAction: () => {}
@@ -47,6 +57,11 @@ class SettingsFieldsView extends Component {
   }
 
   render () {
+    const { data } = this.props
+
+    if (data.loading) return null
+
+    const hasFieldGroups = data.getFieldGroups.length > 0
     const sidebar = this.renderSidebar()
 
     return (
@@ -55,10 +70,10 @@ class SettingsFieldsView extends Component {
           title='Fields Settings'
           buttonText='New Field'
           buttonLink={'/admin/config/settings/fields/new'}
-          showButton
+          showButton={hasFieldGroups}
         />
         <PageBodyWrapper sidebar={sidebar}>
-          No Fields Exist Yet
+          {!hasFieldGroups && 'No Fields Exist Yet'}
         </PageBodyWrapper>
         <PageFooter helpUrl={'TODO: add help link'} />
       </div>
@@ -67,7 +82,17 @@ class SettingsFieldsView extends Component {
 }
 
 SettingsFieldsView.propTypes = {
+  data: PropTypes.object,
   match: PropTypes.object
 }
 
-export default SettingsFieldsView
+const query = gql`
+  query {
+    getFieldGroups {
+      id,
+      name
+    }
+  }
+`
+
+export default compose(graphql(query))(SettingsFieldsView)

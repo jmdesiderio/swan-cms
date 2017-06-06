@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link, NavLink } from 'react-router-dom'
+import { compose } from 'redux'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import Color from 'color'
 import styled from 'styled-components'
 
@@ -101,7 +104,9 @@ class Sidebar extends Component {
   }
 
   render () {
-    const { currentUser } = this.props.data
+    const { data } = this.props
+
+    if (data.loading) return null
 
     return (
       <Header>
@@ -112,7 +117,7 @@ class Sidebar extends Component {
         <Bottom>
           <UserIcon type='user' />
           <User>
-            <div>{currentUser.getName}</div>
+            <div>{data.currentUser.getName}</div>
             <Link to='/admin/logout'>Logout</Link>
           </User>
         </Bottom>
@@ -125,4 +130,12 @@ Sidebar.propTypes = {
   data: PropTypes.object
 }
 
-export default Sidebar
+const query = gql`
+  query {
+    currentUser {
+      getName
+    }
+  }
+`
+
+export default compose(graphql(query))(Sidebar)

@@ -1,13 +1,14 @@
 const bcrypt = require('bcryptjs')
+const { logAndError } = require('../utils/logAndError')
 const User = require('../models/UserModel')
 
 function getUserById (id) {
-  return User.query().findById(id)
+  return User.query().findById(id).catch(logAndError)
 }
 
 function createUser ({ username, firstName, lastName, email, password, passwordConfirmation }) {
   if (password !== passwordConfirmation) {
-    throw new Error('Passwords do not match')
+    logAndError('Passwords do not match')
   }
 
   const hash = bcrypt.hashSync(password, 10)
@@ -20,9 +21,7 @@ function createUser ({ username, firstName, lastName, email, password, passwordC
       email,
       password: hash
     })
-    .catch(err => {
-      throw new Error(err)
-    })
+    .catch(logAndError)
 }
 
 module.exports = {

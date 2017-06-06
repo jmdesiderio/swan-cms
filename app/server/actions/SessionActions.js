@@ -1,5 +1,6 @@
 const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
+const { logAndError } = require('../utils/logAndError')
 const Session = require('../models/SessionModel')
 const User = require('../models/UserModel')
 
@@ -13,7 +14,7 @@ function loginAuth (username, password, res) {
     .first()
     .then(user => {
       const isPasswordValid = bcrypt.compareSync(password, user.password)
-      if (!isPasswordValid) throw new Error('Invalid Login')
+      if (!isPasswordValid) logAndError('Invalid Login')
 
       return Session.query().insertAndFetch({ userId: user.id })
     })
@@ -22,9 +23,7 @@ function loginAuth (username, password, res) {
       res.cookie(SESSION_TOKEN_NAME, encryptedSessionToken)
       return true
     })
-    .catch(err => {
-      throw new Error(err)
-    })
+    .catch(logAndError)
 }
 
 function logoutAuth (req, res) {
@@ -37,12 +36,12 @@ function logoutAuth (req, res) {
   return Session.query()
     .where('token', decryptedSessionToken)
     .patch({ enabled: false })
-    .then(numRows => {
-      if (numRows === 1) return true
-    })
-    .catch(err => {
-      throw new Error(err)
-    })
+    .then(numRows => numRows === 1)
+    .catch(logAndError)
+}
+
+function checkContextForAuth (context) {
+  if (!context.req.user) logAndError('No user session, need to log in')
 }
 
 function encrypt (value) {
@@ -65,6 +64,7 @@ module.exports = {
   SESSION_TOKEN_NAME,
   loginAuth,
   logoutAuth,
+  checkContextForAuth,
   encrypt,
   decrypt
 }

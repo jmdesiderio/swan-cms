@@ -1,4 +1,5 @@
 const moment = require('moment')
+const { log, logAndError } = require('./utils/logAndError')
 const { decrypt, logoutAuth, SESSION_TOKEN_NAME } = require('./actions/SessionActions')
 const Session = require('./models/SessionModel')
 
@@ -20,14 +21,14 @@ function authMiddleware () {
       .eager('user')
       .then(session => {
         const isExpired = moment(session.updatedAt).add(4, 'hours').isBefore(moment())
-        if (isExpired) throw new Error('Session expired')
+        if (isExpired) logAndError('Session expired')
 
         req.user = session.user
 
         return session.$query().patch().then(() => next())
       })
       .catch(err => {
-        console.error(err)
+        log(err)
 
         logoutAuth(req, res).then(() => next())
       })
