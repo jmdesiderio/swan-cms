@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import SettingsFieldsForm from './forms/SettingsFieldsForm'
 import PageHeader from '../../components/PageHeader'
 import PageBodyWrapper from '../../components/PageBodyWrapper'
-import PageSidebar from '../../components/PageSidebar'
 import PageFooter from '../../components/PageFooter'
 
 class SettingsFieldsNewView extends Component {
