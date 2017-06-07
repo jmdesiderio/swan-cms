@@ -41,12 +41,15 @@ app.use(
     }
   })
 )
-app.use(
-  '/graphiql',
-  graphiqlExpress({
-    endpointURL: '/graphql'
-  })
-)
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(
+    '/graphiql',
+    graphiqlExpress({
+      endpointURL: '/graphql'
+    })
+  )
+}
 
 // TEMPLATES
 app.get('*', (req, res) => {

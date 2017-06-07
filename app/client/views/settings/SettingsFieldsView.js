@@ -4,6 +4,7 @@ import { compose } from 'redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import Modal from '../../components/Modal'
 import PageHeader from '../../components/PageHeader'
 import PageBodyWrapper from '../../components/PageBodyWrapper'
 import PageSidebar from '../../components/PageSidebar'
@@ -76,6 +77,7 @@ class SettingsFieldsView extends Component {
           {!hasFieldGroups && 'No Fields Exist Yet'}
         </PageBodyWrapper>
         <PageFooter helpUrl={'TODO: add help link'} />
+        <Modal isOpen>Hi</Modal>
       </div>
     )
   }
