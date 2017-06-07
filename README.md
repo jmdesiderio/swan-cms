@@ -8,6 +8,7 @@
   - Modal
   - Dialog
   - CSS transitions
+- Add reselect
 - Create animated switch for form
 - Create loading state
 - Add unit tests
