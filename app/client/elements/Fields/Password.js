@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Color from 'color'
 import styled from 'styled-components'
+import { lighten } from 'polished'
 
 import { FieldWrapper } from './'
 
@@ -14,7 +14,7 @@ const InputElement = styled.input`
 
   &:focus {
     border-color: ${p => p.theme.colors.blue};
-    box-shadow: 0 0 5px ${p => Color(p.theme.colors.blue).lighten(0.08).string()};
+    box-shadow: 0 0 5px ${p => lighten(0.08, p.theme.colors.blue)};
     outline: 0;
   }
 `

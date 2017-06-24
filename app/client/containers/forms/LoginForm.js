@@ -25,25 +25,27 @@ const FullWidthButton = styled(Button)`
 `
 
 class LoginForm extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      errors: [],
-      isResetPasswordForm: false
-    }
-
-    this.resetPasswordLinkHandler = this.resetPasswordLinkHandler.bind(this)
-    this.submitHandler = this.submitHandler.bind(this)
+  static propTypes = {
+    handleSubmit: PropTypes.func,
+    history: PropTypes.object,
+    invalid: PropTypes.bool,
+    mutate: PropTypes.func,
+    pristine: PropTypes.bool,
+    submitting: PropTypes.bool
   }
 
-  resetPasswordLinkHandler () {
+  state = {
+    errors: [],
+    isResetPasswordForm: false
+  }
+
+  onResetPasswordLink = () => {
     this.setState({
       isResetPasswordForm: true
     })
   }
 
-  submitHandler (input) {
+  onFormSubmit = input => {
     return this.props
       .mutate({
         variables: input
@@ -62,7 +64,7 @@ class LoginForm extends Component {
         <Field component={Password} label='Password' name='password' />
         <Row>
           <Field component={Checkbox} label='Keep me logged in' name='keepLoggedIn' />
-          <Link onClick={this.resetPasswordLinkHandler}>
+          <Link onClick={this.onResetPasswordLink}>
             Forget your password?
           </Link>
         </Row>
@@ -76,7 +78,7 @@ class LoginForm extends Component {
     const buttonText = isResetPasswordForm ? 'Reset Password' : 'Login'
 
     return (
-      <form onSubmit={handleSubmit(this.submitHandler)}>
+      <form onSubmit={handleSubmit(this.onFormSubmit)}>
         {errors.length ? <Errors list={errors} /> : null}
         <Field component={Text} label='Username or Email' name='username' />
         {isResetPasswordForm ? null : this.renderLoginFormBottom()}
@@ -86,15 +88,6 @@ class LoginForm extends Component {
       </form>
     )
   }
-}
-
-LoginForm.propTypes = {
-  handleSubmit: PropTypes.func,
-  history: PropTypes.object,
-  invalid: PropTypes.bool,
-  mutate: PropTypes.func,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool
 }
 
 const validate = values => {

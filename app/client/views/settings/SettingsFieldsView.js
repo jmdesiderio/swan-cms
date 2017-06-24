@@ -11,6 +11,19 @@ import PageSidebar from '../../components/PageSidebar'
 import PageFooter from '../../components/PageFooter'
 
 class SettingsFieldsView extends Component {
+  static propTypes = {
+    data: PropTypes.object,
+    match: PropTypes.object
+  }
+
+  state = {
+    isNewFieldDialogOpen: false
+  }
+
+  openNewFieldDialog = () => this.setState({ isNewFieldDialogOpen: true })
+
+  closeNewFieldDialog = () => this.setState({ isNewFieldDialogOpen: false })
+
   getFieldGroupItems () {
     const { getFieldGroups } = this.props.data
 
@@ -51,7 +64,7 @@ class SettingsFieldsView extends Component {
       selectedId: match.params.id || 'ALL',
       selectedMenu: selectedMenu,
       buttonText: 'New Group',
-      buttonAction: () => {}
+      buttonAction: this.openNewFieldDialog
     }
 
     return <PageSidebar {...props} />
@@ -62,6 +75,7 @@ class SettingsFieldsView extends Component {
 
     if (data.loading) return null
 
+    const { isNewFieldDialogOpen } = this.state
     const hasFieldGroups = data.getFieldGroups.length > 0
     const sidebar = this.renderSidebar()
 
@@ -77,15 +91,12 @@ class SettingsFieldsView extends Component {
           {!hasFieldGroups && 'No Fields Exist Yet'}
         </PageBodyWrapper>
         <PageFooter helpUrl={'TODO: add help link'} />
-        <Modal isOpen>Hi</Modal>
+        <Modal contentLabel='New Field' isOpen={isNewFieldDialogOpen} onRequestClose={this.closeNewFieldDialog}>
+          Hi
+        </Modal>
       </div>
     )
   }
-}
-
-SettingsFieldsView.propTypes = {
-  data: PropTypes.object,
-  match: PropTypes.object
 }
 
 const query = gql`

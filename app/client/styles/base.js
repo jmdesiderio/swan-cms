@@ -1,6 +1,5 @@
-import Color from 'color'
 import { injectGlobal } from 'styled-components'
-import { base, colors, transitions } from './theme'
+import { base, colors } from './theme'
 
 injectGlobal`
   html,

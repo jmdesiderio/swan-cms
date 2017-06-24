@@ -1,10 +1,10 @@
-import Color from 'color'
 import styled from 'styled-components'
+import { darken } from 'polished'
 
 const Button = styled.button`
   background-image: linear-gradient(
       ${p => p.theme.colors.red}, 
-      ${p => Color(p.theme.colors.red).darken(0.08).string()}
+      ${p => darken(0.08, p.theme.colors.red)}
     );
   border: 0;
   border-radius: .25rem;
@@ -17,15 +17,15 @@ const Button = styled.button`
 
   &:hover {
     background-image: linear-gradient(
-        ${p => Color(p.theme.colors.red).darken(0.08).string()}, 
-        ${p => Color(p.theme.colors.red).darken(0.16).string()}
+        ${p => darken(0.08, p.theme.colors.red)}, 
+        ${p => darken(0.16, p.theme.colors.red)}
       );
   }
 
   &:active {
     background-image: linear-gradient(
-        ${p => Color(p.theme.colors.red).darken(0.24).string()}, 
-        ${p => Color(p.theme.colors.red).darken(0.16).string()}
+        ${p => darken(0.24, p.theme.colors.red)}, 
+        ${p => darken(0.16, p.theme.colors.red)}
       );
     outline: 0;
   }

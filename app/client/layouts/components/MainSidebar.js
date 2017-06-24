@@ -4,8 +4,8 @@ import { Link, NavLink } from 'react-router-dom'
 import { compose } from 'redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import Color from 'color'
 import styled from 'styled-components'
+import { transparentize } from 'polished'
 
 import Icon from '../../elements/Icon/Icon'
 
@@ -43,16 +43,16 @@ const SectionLink = styled(NavLink).attrs({
   padding: .5rem 1rem;
 
   &:hover {
-    background: ${p => Color(p.theme.colors.white).alpha(0.05).string()};
+    background: ${p => transparentize(0.95, p.theme.colors.white)};
     border: 0;
   }
 
   &:focus {
-    background: ${p => Color(p.theme.colors.white).alpha(0.1).string()};
+    background: ${p => transparentize(0.9, p.theme.colors.white)};
   }
 
   &.${p => p.activeClassName} {
-    background: ${p => Color(p.theme.colors.white).alpha(0.1).string()};
+    background: ${p => transparentize(0.9, p.theme.colors.white)};
     color: $white;
   }
 `
@@ -78,19 +78,19 @@ const UserIcon = styled(Icon)`
 `
 
 class Sidebar extends Component {
-  constructor (props) {
-    super(props)
+  static propTypes = {
+    data: PropTypes.object
+  }
 
-    this.state = {
-      links: [
-        { text: 'Dashboard', to: '/admin/config/dashboard' },
-        { text: 'Entries', to: '/admin/config/entries' },
-        { text: 'Globals', to: '/admin/config/globals' },
-        { text: 'Categories', to: '/admin/config/categories' },
-        { text: 'Assets', to: '/admin/config/assets' },
-        { text: 'Settings', to: '/admin/config/settings' }
-      ]
-    }
+  state = {
+    links: [
+      { text: 'Dashboard', to: '/admin/config/dashboard' },
+      { text: 'Entries', to: '/admin/config/entries' },
+      { text: 'Globals', to: '/admin/config/globals' },
+      { text: 'Categories', to: '/admin/config/categories' },
+      { text: 'Assets', to: '/admin/config/assets' },
+      { text: 'Settings', to: '/admin/config/settings' }
+    ]
   }
 
   renderLink ({ text, to }) {
@@ -124,10 +124,6 @@ class Sidebar extends Component {
       </Header>
     )
   }
-}
-
-Sidebar.propTypes = {
-  data: PropTypes.object
 }
 
 const query = gql`
