@@ -4,7 +4,6 @@
 - Components
   - Alert
   - Flash Message
-  - Confirmation
   - Modal
   - Dialog
   - CSS transitions
@@ -18,10 +17,11 @@
 - Add router paths constants file to enable using named routes
 - Integrate flow types
 - Improve chrome debugger experience
+- Configure relative import path
+- Add lint staged
 - Convert to style-lint for styled-components
 - Immutable redux?
 - Pick icons theme pack
-- Update graphql and figure out schema error
 - Add shared folder containing enums
 - Add user permissions
 - Add a node logger

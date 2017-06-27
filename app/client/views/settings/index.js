@@ -1,3 +1,3 @@
-export { default as Index } from './SettingsIndexView'
-export { default as Fields } from './SettingsFieldsView'
-export { default as FieldsForm } from './SettingsFieldsFormView'
+export { default as Index } from './IndexView'
+export { default as Fields } from './FieldsView'
+export { default as FieldsForm } from './FieldsFormView'

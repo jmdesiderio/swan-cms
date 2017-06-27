@@ -32,6 +32,7 @@ class Modal extends Component {
 
 const StyledModal = styled(Modal)`
   align-items: center;
+  background: ${p => transparentize(0.95, p.theme.colors.black)};
   bottom: 0;
   display: flex;
   justify-content: center;
@@ -58,6 +59,7 @@ const StyledModal = styled(Modal)`
     box-shadow: 0 4px 33px rgba(0,0,0,.22), 0 0 0 1px rgba(0,0,0,.04);
     outline: none;
     overflow: auto;
+    padding: 16px;
     transform: scale(.95);
     transition: transform ${p => p.theme.transitions.default};
   }

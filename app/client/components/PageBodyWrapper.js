@@ -12,10 +12,10 @@ const Content = styled.div`
   padding: 1rem;
 `
 
-const PageBodyWrapper = ({ children, sidebar }) => {
+const PageBodyWrapper = ({ children, Sidebar }) => {
   return (
-    <Wrapper hasSidebar={Boolean(sidebar)}>
-      {sidebar}
+    <Wrapper hasSidebar={Boolean(Sidebar)}>
+      {Sidebar}
       <Content>
         {children}
       </Content>
@@ -25,7 +25,7 @@ const PageBodyWrapper = ({ children, sidebar }) => {
 
 PageBodyWrapper.propTypes = {
   children: PropTypes.node,
-  sidebar: PropTypes.element
+  Sidebar: PropTypes.element
 }
 
 export default PageBodyWrapper

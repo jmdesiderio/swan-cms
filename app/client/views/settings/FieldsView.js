@@ -4,11 +4,11 @@ import { compose } from 'redux'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import Modal from '../../components/Modal'
 import PageHeader from '../../components/PageHeader'
 import PageBodyWrapper from '../../components/PageBodyWrapper'
 import PageSidebar from '../../components/PageSidebar'
 import PageFooter from '../../components/PageFooter'
+import FieldsGroupFormModal from './forms/FieldsGroupFormModal'
 
 class SettingsFieldsView extends Component {
   static propTypes = {
@@ -17,12 +17,12 @@ class SettingsFieldsView extends Component {
   }
 
   state = {
-    isNewFieldDialogOpen: false
+    isNewFieldModalOpen: false
   }
 
-  openNewFieldDialog = () => this.setState({ isNewFieldDialogOpen: true })
+  openNewFieldModal = () => this.setState({ isNewFieldModalOpen: true })
 
-  closeNewFieldDialog = () => this.setState({ isNewFieldDialogOpen: false })
+  closeNewFieldModal = () => this.setState({ isNewFieldModalOpen: false })
 
   getFieldGroupItems () {
     const { getFieldGroups } = this.props.data
@@ -64,7 +64,7 @@ class SettingsFieldsView extends Component {
       selectedId: match.params.id || 'ALL',
       selectedMenu: selectedMenu,
       buttonText: 'New Group',
-      buttonAction: this.openNewFieldDialog
+      buttonAction: this.openNewFieldModal
     }
 
     return <PageSidebar {...props} />
@@ -75,9 +75,9 @@ class SettingsFieldsView extends Component {
 
     if (data.loading) return null
 
-    const { isNewFieldDialogOpen } = this.state
+    const { isNewFieldModalOpen } = this.state
     const hasFieldGroups = data.getFieldGroups.length > 0
-    const sidebar = this.renderSidebar()
+    const Sidebar = this.renderSidebar()
 
     return (
       <div>
@@ -87,19 +87,17 @@ class SettingsFieldsView extends Component {
           buttonLink={'/admin/config/settings/fields/new'}
           showButton={hasFieldGroups}
         />
-        <PageBodyWrapper sidebar={sidebar}>
+        <PageBodyWrapper Sidebar={Sidebar}>
           {!hasFieldGroups && 'No Fields Exist Yet'}
         </PageBodyWrapper>
         <PageFooter helpUrl={'TODO: add help link'} />
-        <Modal contentLabel='New Field' isOpen={isNewFieldDialogOpen} onRequestClose={this.closeNewFieldDialog}>
-          Hi
-        </Modal>
+        <FieldsGroupFormModal isOpen={isNewFieldModalOpen} onClose={this.closeNewFieldModal} />
       </div>
     )
   }
 }
 
-const query = gql`
+export const GetFieldGroupsQuery = gql`
   query {
     getFieldGroups {
       id,
@@ -108,4 +106,4 @@ const query = gql`
   }
 `
 
-export default compose(graphql(query))(SettingsFieldsView)
+export default compose(graphql(GetFieldGroupsQuery))(SettingsFieldsView)

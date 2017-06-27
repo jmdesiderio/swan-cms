@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SettingsFieldsForm from './forms/SettingsFieldsForm'
+import FieldsForm from './forms/FieldsForm'
 import PageHeader from '../../components/PageHeader'
 import PageBodyWrapper from '../../components/PageBodyWrapper'
 import PageFooter from '../../components/PageFooter'
@@ -17,7 +17,7 @@ class SettingsFieldsNewView extends Component {
           showButton={showButton}
         />
         <PageBodyWrapper>
-          <SettingsFieldsForm />
+          <FieldsForm />
         </PageBodyWrapper>
         <PageFooter helpUrl={'TODO: add help link'} />
       </div>

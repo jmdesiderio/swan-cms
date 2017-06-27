@@ -47,15 +47,9 @@ class LoginForm extends Component {
 
   onFormSubmit = input => {
     return this.props
-      .mutate({
-        variables: input
-      })
-      .then(({ data }) => {
-        this.props.history.push('/admin/config')
-      })
-      .catch(err => {
-        this.setState({ errors: [err.message] })
-      })
+      .mutate({ variables: input })
+      .then(() => this.props.history.push('/admin/config'))
+      .catch(err => this.setState({ errors: [err.message] }))
   }
 
   renderLoginFormBottom () {
