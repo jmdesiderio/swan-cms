@@ -26,43 +26,38 @@ class SettingsFieldsView extends Component {
 
   getFieldGroupItems () {
     const { getFieldGroups } = this.props.data
+    const url = '/admin/config/settings/fields'
 
-    return getFieldGroups.map(({ id, name }) => ({
-      id,
-      name,
-      linkUrl: '/admin/config/settings/fields/' + id
-    }))
+    return [
+      {
+        id: 'ALL',
+        name: 'All Fields',
+        linkUrl: url
+      },
+      ...getFieldGroups.map(({ id, name }) => ({ id, name, linkUrl: `${url}/${id}` }))
+    ]
+  }
+
+  getDropdownMenuItems () {
+    return [
+      {
+        name: 'Rename selected group',
+        action: () => {}
+      },
+      {
+        name: 'Delete selected group',
+        action: () => {}
+      }
+    ]
   }
 
   renderSidebar () {
-    const { match } = this.props
-
-    const items = [
-      {
-        name: 'All Fields',
-        linkUrl: '/admin/config/settings/fields',
-        id: 'ALL'
-      },
-      ...this.getFieldGroupItems()
-    ]
-
-    const selectedMenu = !match.params.id
-      ? null
-      : [
-        {
-          name: 'Rename selected group',
-          action: () => {}
-        },
-        {
-          name: 'Delete selected group',
-          action: () => {}
-        }
-      ]
+    const { params } = this.props.match
 
     const props = {
-      items,
-      selectedId: match.params.id || 'ALL',
-      selectedMenu: selectedMenu,
+      items: this.getFieldGroupItems(),
+      selectedId: params.id || 'ALL',
+      selectedMenu: !params.id ? null : this.getDropdownMenuItems(),
       buttonText: 'New Group',
       buttonAction: this.openNewFieldModal
     }
@@ -97,7 +92,7 @@ class SettingsFieldsView extends Component {
   }
 }
 
-export const GetFieldGroupsQuery = gql`
+export const getFieldGroupsQuery = gql`
   query {
     getFieldGroups {
       id,
@@ -106,4 +101,4 @@ export const GetFieldGroupsQuery = gql`
   }
 `
 
-export default compose(graphql(GetFieldGroupsQuery))(SettingsFieldsView)
+export default compose(graphql(getFieldGroupsQuery))(SettingsFieldsView)

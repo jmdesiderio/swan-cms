@@ -35,7 +35,7 @@ Confirmation.propTypes = {
 }
 
 Confirmation.defaultProps = {
-  title: 'Are you sure?',
+  title: 'Are you sure you want to leave?',
   cancelText: 'Cancel',
   confirmText: 'Confirm'
 }

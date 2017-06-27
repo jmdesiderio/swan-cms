@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Prompt } from 'react-router-dom'
 import { compose } from 'redux'
 import { Field, reduxForm } from 'redux-form'
 
@@ -8,6 +9,7 @@ import { Errors } from '../../../elements/Errors/Errors'
 
 class SettingsFieldsForm extends Component {
   static propTypes = {
+    dirty: PropTypes.bool,
     handleSubmit: PropTypes.func,
     invalid: PropTypes.bool,
     mutate: PropTypes.func,
@@ -22,7 +24,7 @@ class SettingsFieldsForm extends Component {
   onFormSubmit (input) {}
 
   render () {
-    const { handleSubmit, invalid, pristine, submitting } = this.props
+    const { dirty, handleSubmit, invalid, pristine, submitting } = this.props
     const { errors } = this.state
 
     return (
@@ -33,6 +35,7 @@ class SettingsFieldsForm extends Component {
         <Button disabled={invalid || pristine || submitting}>
           Save
         </Button>
+        <Prompt when={dirty} message='Are you sure you want to leave? You have unsaved changes that will be lost.' />
       </form>
     )
   }

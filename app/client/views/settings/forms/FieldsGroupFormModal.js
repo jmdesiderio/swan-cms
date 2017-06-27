@@ -7,9 +7,10 @@ import gql from 'graphql-tag'
 
 import Modal from '../../../components/Modal'
 import Confirmation from '../../../components/Confirmation'
-import { GetFieldGroupsQuery } from '../FieldsView'
 import { Button, Text } from '../../../elements/Fields'
 import { Errors } from '../../../elements/Errors/Errors'
+
+import { getFieldGroupsQuery } from '../FieldsView'
 
 class SettingsFieldsFormModal extends Component {
   static propTypes = {
@@ -32,7 +33,7 @@ class SettingsFieldsFormModal extends Component {
   onFormSubmit = input => {
     const { mutate } = this.props
 
-    return mutate({ refetchQueries: [{ query: GetFieldGroupsQuery }], variables: input })
+    return mutate({ refetchQueries: [{ query: getFieldGroupsQuery }], variables: input })
       .then(this.onCloseAndReset)
       .catch(err => this.setState({ errors: [err.message] }))
   }
