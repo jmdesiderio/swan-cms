@@ -70,16 +70,18 @@ class SettingsFieldsFormModal extends Component {
     const { errors } = this.state
 
     return (
-      <Modal contentLabel='New Group' isOpen={isOpen} onRequestClose={this.onRequestClose}>
-        <form onSubmit={handleSubmit(this.onFormSubmit)}>
-          {errors.length ? <Errors list={errors} /> : null}
-          <Field component={Text} label='Group Name' name='groupName' />
-          <Button disabled={invalid || pristine || submitting}>
-            Create
-          </Button>
-        </form>
+      <div>
+        <Modal contentLabel='New Group' isOpen={isOpen} onRequestClose={this.onRequestClose}>
+          <form onSubmit={handleSubmit(this.onFormSubmit)}>
+            {errors.length ? <Errors list={errors} /> : null}
+            <Field component={Text} label='Group Name' name='groupName' />
+            <Button disabled={invalid || pristine || submitting}>
+              Create
+            </Button>
+          </form>
+        </Modal>
         {this.renderConfirmation()}
-      </Modal>
+      </div>
     )
   }
 }
