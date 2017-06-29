@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import DropdownMenu from './DropdownMenu'
 import { ButtonSecondary } from '../elements/Fields'
 
 const Wrapper = styled.nav`
@@ -31,7 +32,7 @@ const Item = styled.li`
   transition: background-color ${p => p.theme.transitions.default};
 
   &:hover {
-    background-color: ${p => p.theme.colors.gainsboro}
+    background-color: ${p => p.theme.colors.gainsboro};
   }
 `
 
@@ -50,45 +51,85 @@ const ButtonsWrapper = styled.div`
   padding: 2rem 1rem;
 `
 
-const PageSidebar = ({ items, selectedId, buttonText, buttonAction, selectedMenu }) => {
-  const ListItems = items.map(({ name, linkUrl, id }) => {
-    const isSelected = id === selectedId
-    const ListItem = isSelected ? SelectedItem : Item
-    const ListItemLink = isSelected ? SelectedItemLink : ItemLink
+class PageSidebar extends Component {
+  static propTypes = {
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        linkUrl: PropTypes.string,
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      })
+    ).isRequired,
+    selectedId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    selectedMenu: PropTypes.arrayOf(PropTypes.object),
+    buttonText: PropTypes.string,
+    buttonAction: PropTypes.func
+  }
 
-    return <ListItem key={id}><ListItemLink to={linkUrl}>{name}</ListItemLink></ListItem>
-  })
+  state = {
+    isDropdownMenuOpen: false
+  }
 
-  return (
-    <Wrapper>
-      <List>
-        {ListItems}
-      </List>
-      <ButtonsWrapper>
-        {buttonText && <ButtonSecondary onClick={buttonAction}>{buttonText}</ButtonSecondary>}
-        {selectedMenu && <ButtonSecondary>Menu</ButtonSecondary>}
-      </ButtonsWrapper>
-    </Wrapper>
-  )
-}
+  openDropdownMenu = () => this.setState({ isDropdownMenuOpen: true })
 
-PageSidebar.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      linkUrl: PropTypes.string,
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  closeDropdownMenu = () => this.setState({ isDropdownMenuOpen: false })
+
+  getDropdownAnchor () {
+    return this.dropdownMenuAnchor
+  }
+
+  renderListItems () {
+    const { items, selectedId } = this.props
+
+    return items.map(({ name, linkUrl, id }) => {
+      const isSelected = id === selectedId
+      const ListItem = isSelected ? SelectedItem : Item
+      const ListItemLink = isSelected ? SelectedItemLink : ItemLink
+
+      return (
+        <ListItem key={id}>
+          <ListItemLink to={linkUrl}>
+            {name}
+          </ListItemLink>
+        </ListItem>
+      )
     })
-  ).isRequired,
-  selectedId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  selectedMenu: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      action: PropTypes.func
-    })
-  ),
-  buttonText: PropTypes.string,
-  buttonAction: PropTypes.func
+  }
+
+  render () {
+    const { buttonText, buttonAction, selectedMenu } = this.props
+    const { isDropdownMenuOpen } = this.state
+
+    return (
+      <Wrapper>
+        <List>
+          {this.renderListItems()}
+        </List>
+        <ButtonsWrapper>
+          {buttonText &&
+            <ButtonSecondary onClick={buttonAction}>
+              {buttonText}
+            </ButtonSecondary>}
+          {selectedMenu &&
+            <ButtonSecondary
+              innerRef={node => {
+                this.dropdownMenuAnchor = node
+              }}
+              onClick={this.openDropdownMenu}
+            >
+              Menu
+            </ButtonSecondary>}
+          {selectedMenu &&
+            <DropdownMenu
+              anchor={this.dropdownMenuAnchor}
+              isOpen={isDropdownMenuOpen}
+              onRequestClose={this.closeDropdownMenu}
+              options={selectedMenu}
+            />}
+        </ButtonsWrapper>
+      </Wrapper>
+    )
+  }
 }
 
 export default PageSidebar

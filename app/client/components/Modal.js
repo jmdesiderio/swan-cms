@@ -7,6 +7,7 @@ import { transitions } from '../styles/theme'
 
 class Modal extends Component {
   static propTypes = {
+    anchor: PropTypes.instanceOf(Node),
     children: PropTypes.node.isRequired,
     className: PropTypes.string.isRequired,
     contentLabel: PropTypes.string.isRequired,
@@ -14,15 +15,23 @@ class Modal extends Component {
     onRequestClose: PropTypes.func.isRequired
   }
 
+  getPosition () {
+    const { anchor } = this.props
+
+    return anchor.getBoundingClientRect()
+  }
+
   render () {
-    const { children, className, ...rest } = this.props
+    const { children, className, contentLabel, isOpen, onRequestClose } = this.props
 
     return (
       <ReactModal
-        closeTimeoutMS={transitions.defaultDurationMS}
         className='Modal-content'
+        closeTimeoutMS={transitions.defaultDurationMS}
+        contentLabel={contentLabel}
+        isOpen={isOpen}
+        onRequestClose={onRequestClose}
         overlayClassName={className}
-        {...rest}
       >
         {children}
       </ReactModal>

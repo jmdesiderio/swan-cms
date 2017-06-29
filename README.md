@@ -1,6 +1,6 @@
 # swan-cms
 
-## Todo
+## Todos
 - Components
   - Alert
   - Flash Message
@@ -11,6 +11,7 @@
 - Create animated switch for form
 - Create loading state
 - Add unit tests
+- Add webpack hot reload
 - Style forms for config pages and make overrides for login page style
 - Select react components to use - modal, virtualized list, etc
 - Write a breadcrumb component with app route tree
@@ -31,6 +32,7 @@
 - Figure out plug in architecture
 - Look into webpack-blocks
 - Create user friendly errors
+- Address TODOs
 - a11y audit
 - l18n audit
 - security audit

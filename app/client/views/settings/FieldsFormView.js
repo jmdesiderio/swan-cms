@@ -4,7 +4,7 @@ import PageHeader from '../../components/PageHeader'
 import PageBodyWrapper from '../../components/PageBodyWrapper'
 import PageFooter from '../../components/PageFooter'
 
-class SettingsFieldsNewView extends Component {
+class SettingsFieldsFormView extends Component {
   render () {
     const showButton = true
 
@@ -25,4 +25,4 @@ class SettingsFieldsNewView extends Component {
   }
 }
 
-export default SettingsFieldsNewView
+export default SettingsFieldsFormView

@@ -95,7 +95,7 @@ class SettingsFieldsView extends Component {
 export const getFieldGroupsQuery = gql`
   query {
     getFieldGroups {
-      id,
+      id
       name
     }
   }
